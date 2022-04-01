@@ -1,0 +1,20 @@
+{# templates/report.html.twig #}
+{% block header %}
+    {% include 'header.html.twig' with {'title': 'Redovisning'} %}
+{% endblock %}
+{% block nav %}
+    {% include 'nav.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h3>Redovisningstexter</h3>
+        {% for text in texts %}
+            {% apply markdown_to_html %}
+                {{ text | raw }}
+            {% endapply %}
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{# templates/about.html.twig #}
+{% block header %}
+    {% include 'header.html.twig' with {'title': 'Kursbeskrivning'} %}
+{% endblock %}
+{% block nav %}
+    {% include 'nav.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h3>Om kursen</h3>
+        <p>Kursen heter {{ course }} och berör arkitekturmönstret med samma namn vilket står för model, view,
+            controller. I kursen kommer vi använda Objektorienterad PHP med ramverket Symfony för att lära oss mer om
+            objektorientering, designmönster, databashantering och annat.</p>
+        <img src="images/mvc_again.jpg" class="center-img" width="400">
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html.twig' %}
+{% endblock %}
