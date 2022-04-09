@@ -49,7 +49,7 @@ class PresentationControllerTwig extends AbstractController
         $texts = [];
         foreach ($finder as $file) {
             $contents = $file->getContents();
-            array_push($texts, $contents);
+            $texts[] = $contents;
         }
 
         return $this->render('report.html.twig', [

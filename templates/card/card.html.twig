@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Card</h3>
+        <a href="{{ path('card-deck') }}">Deck</a><br/>
+        <a href="{{ path('card-shuffle') }}">Shuffle</a><br/>
+        <a href="{{ path('card-draw') }}">Draw</a><br/>
+    </div>
+{% endblock %}

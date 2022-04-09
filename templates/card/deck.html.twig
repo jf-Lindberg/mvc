@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block title %}Deck{% endblock %}
+
+{% block content %}
+    <div class="deck flex-row-center container">
+        {% for i in 0..51 %}
+            {% use "snippet/card.html.twig" %}
+            {% block card %}
+                {{ parent() }}
+            {% endblock %}
+        {% endfor %}
+    </div>
+{% endblock %}

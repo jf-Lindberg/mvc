@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block title %}Draw{% endblock %}
+
+{% block content %}
+    <div class="flex-column-center container">
+        {% block card %}
+            <div class="card {% if (card[1] == '&hearts;' or card[1] == '&diams;') %}red{% endif %}">
+                {{ card[1] | raw }}
+                {{ card[0] }}
+                {{ card[1] | raw }}
+            </div>
+            <div><p>Kort kvar: {{ amountLeft }}</p></div>
+        {% endblock %}
+    </div>
+{% endblock %}

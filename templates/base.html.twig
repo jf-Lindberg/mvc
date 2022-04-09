@@ -1,22 +1,53 @@
-<!DOCTYPE html>
-<html>
+{% block head %}
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{ asset('styles/style.css') }}" rel="stylesheet"/>
+    <title>{% block title %}{% endblock %} | OOPHP</title>
 </head>
-<body>
-{% block body %}
-    {{ name }}
 {% endblock %}
-</body>
+{% block body %}
+    <body>
+    <div class="container main">
+        {% block header %}
+            <header class="header">
+                <img src="{{ asset('images/triangle.png') }}" class="center-img" height="100">
+                <h2 class="">{{ block('title') }}</h2>
+            </header>
+        {% endblock %}
+        {% block navigation %}
+            <nav class="navbar">
+                <div class="container">
+                    <ul class="navbar-list">
+                        <li class="navbar-item">
+                            <a href="{{ path('presentation') }}" class="navbar-link">Filip</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="{{ path('about') }}" class="navbar-link">MVC</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="{{ path('report') }}" class="navbar-link">Redovisning</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="{{ path('card-home') }}" class="navbar-link">Card</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        {% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+    {% block footer %}
+        <div class="container">
+            <footer class="footer">
+                <p>&copy; Filip Lindberg 2022</p>
+            </footer>
+        </div>
+    {% endblock %}
+    </body>
+{% endblock %}
 </html>

@@ -1,10 +1,7 @@
-{# templates/report.html.twig #}
-{% block header %}
-    {% include 'header.html.twig' with {'title': 'Redovisning'} %}
-{% endblock %}
-{% block nav %}
-    {% include 'nav.html.twig' %}
-{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block title %}Redovisning{% endblock %}
+
 {% block content %}
     <div class="container">
         <h3>Redovisningstexter</h3>
@@ -14,7 +11,4 @@
             {% endapply %}
         {% endfor %}
     </div>
-{% endblock %}
-{% block footer %}
-    {% include 'footer.html.twig' %}
 {% endblock %}

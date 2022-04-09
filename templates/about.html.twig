@@ -1,10 +1,7 @@
-{# templates/about.html.twig #}
-{% block header %}
-    {% include 'header.html.twig' with {'title': 'Kursbeskrivning'} %}
-{% endblock %}
-{% block nav %}
-    {% include 'nav.html.twig' %}
-{% endblock %}
+{% extends "base.html.twig" %}
+
+{% block title %}Kursbeskrivning{% endblock %}
+
 {% block content %}
     <div class="container">
         <h3>Om kursen</h3>
@@ -13,7 +10,4 @@
             objektorientering, designmönster, databashantering och annat.</p>
         <img src="images/mvc_again.jpg" class="center-img" width="400">
     </div>
-{% endblock %}
-{% block footer %}
-    {% include 'footer.html.twig' %}
 {% endblock %}
