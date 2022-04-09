@@ -10,9 +10,11 @@ interface DeckInterface
      */
     public function shuffle(): void;
 
-    /** Draws a random card from the deck.
+    /**
+     * Draws a random card from the deck.
      *
-     * @return Card
+     * @param int $countOfCards
+     * @return array
      */
-    public function draw(): Card;
+    public function draw(int $countOfCards): array;
 }

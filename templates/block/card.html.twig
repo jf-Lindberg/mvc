@@ -1,0 +1,7 @@
+{% block card %}
+    <div class="card {% if (card[1] == '&hearts;' or card[1] == '&diams;') %}red{% endif %}">
+        {{ card[1] | raw }}
+        {{ card[0] }}
+        {{ card[1] | raw }}
+    </div>
+{% endblock %}

@@ -8,6 +8,17 @@ class Deck implements DeckInterface
 
     public function __construct()
     {
+        $this->createDeck();
+    }
+    // USE TRAITS TO IMPLEMENT BELOW WHEN ADDING DECK2
+    /**
+     * Creates a deck.
+     *
+     * @return void
+     */
+    public function createDeck(): void
+    {
+        $this->deck = [];
         for ($i = 0; $i < 4; $i++) {
             for ($j = 2; $j < 15; $j++) {
                 $card = new Card();
@@ -16,7 +27,6 @@ class Deck implements DeckInterface
             }
         }
     }
-
     /**
      * Returns an array with the "stringified" deck.
      *
@@ -31,6 +41,11 @@ class Deck implements DeckInterface
         return $stringifiedDeck;
     }
 
+    public function getLength(): int
+    {
+        return count($this->deck);
+    }
+
     /**
      * Shuffles all cards in the deck.
      *
@@ -41,14 +56,19 @@ class Deck implements DeckInterface
         shuffle($this->deck);
     }
 
-    /** Draws a random card from the deck.
+    /**
+     * Draws a random card from the deck.
      *
-     * @return Card
+     * @param int $countOfCards
+     * @return array
      */
-    public function draw(): Card
+    public function draw(int $countOfCards): array
     {
-        $cardIndex = rand(0, (count($this->deck) - 1));
-        $card = array_splice($this->deck, $cardIndex, 1);
-        return $card[0];
+        $cardArray = [];
+        for ($i = 0; $i < $countOfCards; $i++) {
+            $card = array_splice($this->deck, ($this->getLength() - 1), 1);
+            $cardArray[] = $card[0]->getCardAsArray();
+        }
+        return $cardArray;
     }
 }
