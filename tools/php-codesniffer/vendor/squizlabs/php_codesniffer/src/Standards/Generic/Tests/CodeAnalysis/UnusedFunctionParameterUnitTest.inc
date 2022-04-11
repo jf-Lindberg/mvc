@@ -124,7 +124,7 @@ function myCallback($a, $b, $c, $d) {
 
 fn ($a, $b, $c) => $b;
 
-// phpcs:set Generic.CodeAnalysis.UnusedFunctionParameter ignoreTypeHints[] Exception
+// phpcs:set Generic.CodeAnalysis.UnusedFunctionParameter ignoreTypeHints[] Card
 
 function oneParam(Exception $foo) {
     return 'foobar';

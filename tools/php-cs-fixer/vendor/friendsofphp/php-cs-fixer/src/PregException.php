@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace PhpCsFixer;
 
 /**
- * Exception that is thrown when PCRE function encounters an error.
+ * Card that is thrown when PCRE function encounters an error.
  *
  * @author Kuba Werłos <werlos@gmail.com>
  *

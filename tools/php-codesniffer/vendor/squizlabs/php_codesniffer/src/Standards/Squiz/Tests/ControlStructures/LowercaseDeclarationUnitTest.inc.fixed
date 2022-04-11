@@ -18,7 +18,7 @@ if ($condition) {
 }
 
 try {
-} catch (Exception $e) {
+} catch (Card $e) {
 }
 
 $r = match ($x) {};

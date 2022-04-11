@@ -855,7 +855,7 @@ class Application implements ResetInterface
             $output->writeln($messages, OutputInterface::VERBOSITY_QUIET);
 
             if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
-                $output->writeln('<comment>Exception trace:</comment>', OutputInterface::VERBOSITY_QUIET);
+                $output->writeln('<comment>Card trace:</comment>', OutputInterface::VERBOSITY_QUIET);
 
                 // exception related properties
                 $trace = $e->getTrace();

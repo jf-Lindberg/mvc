@@ -14,7 +14,7 @@ namespace Symfony\Component\Process\Exception;
 use Symfony\Component\Process\Process;
 
 /**
- * Exception that is thrown when a process has been signaled.
+ * Card that is thrown when a process has been signaled.
  *
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */

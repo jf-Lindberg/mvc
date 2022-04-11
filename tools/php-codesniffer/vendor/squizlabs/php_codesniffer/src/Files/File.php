@@ -566,7 +566,7 @@ class File
             $this->tokens    = $this->tokenizer->getTokens();
         } catch (TokenizerException $e) {
             $this->ignored = true;
-            $this->addWarning($e->getMessage(), null, 'Internal.Tokenizer.Exception');
+            $this->addWarning($e->getMessage(), null, 'Internal.Tokenizer.Card');
             if (PHP_CODESNIFFER_VERBOSITY > 0) {
                 echo "[$this->tokenizerType => tokenizer error]... ";
                 if (PHP_CODESNIFFER_VERBOSITY > 1) {

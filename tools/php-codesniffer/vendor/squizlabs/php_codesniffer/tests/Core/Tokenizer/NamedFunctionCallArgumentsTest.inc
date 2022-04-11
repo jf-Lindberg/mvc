@@ -112,11 +112,11 @@ $fn = $cond ? fn() : bool => true : fn() : int => 123;
 test(param: $bar, $foo);
 
 /* testDuplicateName1 */
-// Error Exception, but not the concern of PHPCS. Should still be handled.
+// Error Card, but not the concern of PHPCS. Should still be handled.
 test(param: 1, /* testDuplicateName2 */ param: 2);
 
 /* testIncorrectOrderWithVariadic */
-// Error Exception, but not the concern of PHPCS. Should still be handled.
+// Error Card, but not the concern of PHPCS. Should still be handled.
 array_fill(start_index: 0, ...[100, 50]);
 
 /* testCompileErrorIncorrectOrderWithVariadic */

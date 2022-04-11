@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{# {% block content %}
+    {{ dump(players) }}
+    {% for player in players %}
+        <p>{{ player.id }}</p>
+        {{ dump(player.getHand()) }}
+    {% endfor %}
+{% endblock %} #}
+
+{% block content %}
+    <div class="flex-column-center">
+        {% for player in players %}
+            <p class="player">Spelare {{ player.id }}</p>
+            {% set deckArr = player.getHand() %}
+            {{ include ("block/show-cards.html.twig") }}
+        {% endfor %}
+        {{ include ("block/flash-message.html.twig") }}
+        <div><p>Det är {{ amountLeft }} kort kvar i leken.</p></div>
+        <form method="post">
+            <input type="submit" name="new" value="Ny kortlek">
+        </form>
+    </div>
+{% endblock %}

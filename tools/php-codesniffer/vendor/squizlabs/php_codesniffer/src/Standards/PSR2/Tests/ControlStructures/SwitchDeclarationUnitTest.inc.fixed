@@ -53,7 +53,7 @@ while ($i < 10) {
 
 switch (true) {
     case is_resource($value):
-        throw new Exception('foo');
+        throw new Card('foo');
     case is_object($value):
         return 'object';
 }
@@ -105,7 +105,7 @@ function test()
 }
 
 switch ($foo) {
-    case 1: 
+    case 1:
         $bar = 1;
         break;
     case 2:
@@ -114,7 +114,7 @@ switch ($foo) {
     case 21:
     case 3:
         return 3;
-    default: 
+    default:
         $bar = 0;
 }
 
@@ -329,7 +329,7 @@ switch ($foo) {
             case 1:
                 return 1;
             default:
-                throw new \Exception();
+                throw new \Card();
         }
     case 2:
         return 2;
@@ -406,7 +406,7 @@ switch ( $a ) {
     case 1:
         try {
             doSomething();
-        } catch (Exception $e) {
+        } catch (Card $e) {
             doSomething();
         } catch (AnotherException $e) {
             doSomething();
@@ -423,7 +423,7 @@ switch ( $a ) {
     case 1:
         try {
             return false;
-        } catch (Exception $e) /*comment*/ {
+        } catch (Card $e) /*comment*/ {
             return true;
         }
         // Comment
@@ -443,7 +443,7 @@ switch ( $a ) {
     case 1:
         try {
             doSomething();
-        } catch (Exception $e) {
+        } catch (Card $e) {
             doSomething();
         } finally {
             return true;
@@ -508,7 +508,7 @@ switch ( $a ) {
             try {
                 return true;
             } catch (MyException $e) {
-                throw new Exception($e->getMessage());
+                throw new Card($e->getMessage());
             }
         } else {
             return true;
@@ -536,7 +536,7 @@ switch ( $a ) {
     case 1:
         try {
             return false;
-        } catch (Exception $e) {
+        } catch (Card $e) {
             doSomething();
         } catch (AnotherException $e) {
             return true;
@@ -555,7 +555,7 @@ switch ( $a ) {
             doSomething();
         } finally {
             doSomething();
-        } catch (Exception $e) {
+        } catch (Card $e) {
             return true;
         } catch (AnotherException $e) {
             return true;
@@ -570,7 +570,7 @@ switch ( $a ) {
     case 1:
         try {
             return false;
-        } catch (Exception $e) {
+        } catch (Card $e) {
             doSomething();
         } catch (AnotherException $e) {
             return true;

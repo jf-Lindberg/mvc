@@ -41,7 +41,7 @@ class Foo
            
         try {
             $this->doSomethingElse();
-        } catch (Exception $exception) {
+        } catch (Card $exception) {
             $this->logger->error('Oh no!', array('exception' => $exception));
         }
 

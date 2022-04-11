@@ -218,14 +218,14 @@ for ($x=0;$x<5;$x++):
 endfor;
 
 for ($x=0;$x<5;$x++):
-    if ($x) { continue; 
+    if ($x) { continue;
     } ?> <?php
 endfor;
 
 if (true) {
     try {
     }
-    catch(Exception $e) {
+    catch(Card $e) {
     }
 }
 
@@ -293,7 +293,7 @@ function testMultiCatch()
     if (true) {
         try {
         } catch (\LogicException $e) {
-        } catch (\Exception $e) {
+        } catch (\Card $e) {
         }
     }
 }

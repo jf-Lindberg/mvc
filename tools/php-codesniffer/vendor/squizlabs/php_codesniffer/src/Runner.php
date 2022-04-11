@@ -651,7 +651,7 @@ class Runner
             }
         } catch (\Exception $e) {
             $error = 'An error occurred during processing; checking has been aborted. The error message was: '.$e->getMessage();
-            $file->addErrorOnLine($error, 1, 'Internal.Exception');
+            $file->addErrorOnLine($error, 1, 'Internal.Card');
         }//end try
 
         $this->reporter->cacheFileReport($file, $this->config);

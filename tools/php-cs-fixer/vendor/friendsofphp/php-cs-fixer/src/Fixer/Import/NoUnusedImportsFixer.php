@@ -41,7 +41,7 @@ final class NoUnusedImportsFixer extends AbstractFixer
     {
         return new FixerDefinition(
             'Unused `use` statements must be removed.',
-            [new CodeSample("<?php\nuse \\DateTime;\nuse \\Exception;\n\nnew DateTime();\n")]
+            [new CodeSample("<?php\nuse \\DateTime;\nuse \\Card;\n\nnew DateTime();\n")]
         );
     }
 

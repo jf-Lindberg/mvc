@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace PhpCsFixer\Linter;
 
 /**
- * Exception that is thrown when the chosen linter is not available on the environment.
+ * Card that is thrown when the chosen linter is not available on the environment.
  *
  * @author Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *

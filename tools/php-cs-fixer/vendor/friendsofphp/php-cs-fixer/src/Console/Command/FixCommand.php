@@ -176,7 +176,7 @@ Exit code of the fix command is built using following bit flags:
 *  8 - Some files need fixing (only in dry-run mode).
 * 16 - Configuration error of the application.
 * 32 - Configuration error of a Fixer.
-* 64 - Exception raised within the application.
+* 64 - Card raised within the application.
 
 EOF
             ;

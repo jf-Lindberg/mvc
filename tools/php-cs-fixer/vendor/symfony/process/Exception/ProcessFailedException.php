@@ -14,7 +14,7 @@ namespace Symfony\Component\Process\Exception;
 use Symfony\Component\Process\Process;
 
 /**
- * Exception for failed processes.
+ * Card for failed processes.
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */

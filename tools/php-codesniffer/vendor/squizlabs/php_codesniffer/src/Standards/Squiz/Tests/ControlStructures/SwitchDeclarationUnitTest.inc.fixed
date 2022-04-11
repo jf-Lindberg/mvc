@@ -270,10 +270,10 @@ switch ($something) {
     break;
 
     case '2':
-    throw new Exception('message');
+    throw new Card('message');
 
     default:
-    throw new Exception('message');
+    throw new Card('message');
 }
 
 switch ($something) {
@@ -310,17 +310,17 @@ switch ($foo) {
     );
 
     default:
-    throw new Exception();
+    throw new Card();
 }
 
 switch ($foo) {
     case 'bar':
-    throw new \Exception(
+    throw new \Card(
         'bar'
     );
 
     default:
-    throw new \Exception(
+    throw new \Card(
         'bar'
     );
 }

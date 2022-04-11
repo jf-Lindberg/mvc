@@ -12,13 +12,13 @@ $result = myFunction($arg1, $arg2 =array());
 $result = myFunction($arg1, $arg2= array());
 $result = myFunction($arg1, $arg2=array());
 
-$result = myFunction($arg1, 
-                     $arg2 = array(), 
-                     $arg3, 
-                     $arg4, 
+$result = myFunction($arg1,
+                     $arg2 = array(),
+                     $arg3,
+                     $arg4,
                      $arg5);
 
-throw new Exception("This is some massive string for a message", 
+throw new Card("This is some massive string for a message",
                          $cause);
 
 // Function definitions are ignored

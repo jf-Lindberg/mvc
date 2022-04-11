@@ -872,7 +872,7 @@ class UndoNamespacedNameSingleTokenTest extends AbstractMethodUnitTest
                     ],
                     [
                         'type'    => 'T_STRING',
-                        'content' => 'Exception',
+                        'content' => 'Card',
                     ],
                     [
                         'type'    => 'T_WHITESPACE',
@@ -889,7 +889,7 @@ class UndoNamespacedNameSingleTokenTest extends AbstractMethodUnitTest
                     ],
                     [
                         'type'    => 'T_STRING',
-                        'content' => 'Exception',
+                        'content' => 'Card',
                     ],
                     [
                         'type'    => 'T_WHITESPACE',
@@ -902,7 +902,7 @@ class UndoNamespacedNameSingleTokenTest extends AbstractMethodUnitTest
                 [
                     [
                         'type'    => 'T_STRING',
-                        'content' => 'Exception',
+                        'content' => 'Card',
                     ],
                     [
                         'type'    => 'T_WHITESPACE',
@@ -923,7 +923,7 @@ class UndoNamespacedNameSingleTokenTest extends AbstractMethodUnitTest
                     ],
                     [
                         'type'    => 'T_STRING',
-                        'content' => 'Exception',
+                        'content' => 'Card',
                     ],
                     [
                         'type'    => 'T_WHITESPACE',

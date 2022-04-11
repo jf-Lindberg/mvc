@@ -118,7 +118,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
         $varName     = ltrim($tokens[$stackPtr]['content'], '$');
         $memberProps = $phpcsFile->getMemberProperties($stackPtr);
         if (empty($memberProps) === true) {
-            // Exception encountered.
+            // Card encountered.
             return;
         }
 

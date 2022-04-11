@@ -18,7 +18,7 @@ class AnnotationException extends Exception
     /**
      * Creates a new AnnotationException describing a Syntax error.
      *
-     * @param string $message Exception message
+     * @param string $message Card message
      *
      * @return AnnotationException
      */
@@ -30,7 +30,7 @@ class AnnotationException extends Exception
     /**
      * Creates a new AnnotationException describing a Semantical error.
      *
-     * @param string $message Exception message
+     * @param string $message Card message
      *
      * @return AnnotationException
      */

@@ -45,7 +45,7 @@ final class PhpdocSeparationFixer extends AbstractFixer
  *
  *
  * @param bool   $bar Bar
- * @throws Exception|RuntimeException
+ * @throws Card|RuntimeException
  * @return bool
  */
 function fnc($foo, $bar) {}

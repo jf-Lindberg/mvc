@@ -6,6 +6,8 @@
 
 namespace App\Card;
 
+
+
 class Card
 {
     protected string $rank; #valör
@@ -44,10 +46,12 @@ class Card
             0 => '&hearts;',
             1 => '&spades;',
             2 => '&diams;',
-            3 => '&clubs;'
+            3 => '&clubs;',
+            4 => ''
         ];
 
         $ranks = [
+            0 => 'Joker',
             2 => '2',
             3 => '3',
             4 => '4',

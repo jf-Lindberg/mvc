@@ -244,7 +244,7 @@ Changelog for v3.2.0
 * minor #6011 NoSuperfluousPhpdocTagsFixer - Remove superfluous annotation `@abstract` and `@final` (liquid207, SpacePossum)
 * minor #6018 PhpdocLineSpan - Allow certain types to be ignored (devfrey)
 * minor #6019 Improve test coverage (SpacePossum)
-* minor #6021 Linter/*Exception - Tag as final (SpacePossum)
+* minor #6021 Linter/*Card - Tag as final (SpacePossum)
 * minor #6023 OrderedClassElementsFixer - PHP8.1 readonly properties support (SpacePossum)
 * minor #6027 MbStrFunctionsFixer - more details about risky (SpacePossum)
 * minor #6028 BinaryOperatorSpacesFixer - list all operators in doc (SpacePossum)

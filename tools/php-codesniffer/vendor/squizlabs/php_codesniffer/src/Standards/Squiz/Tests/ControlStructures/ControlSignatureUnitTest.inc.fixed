@@ -100,17 +100,17 @@ if ($i == 0) { // this is ok
     $i = 1;
 }
 
-if ($i == 0) { /* this is ok */ 
+if ($i == 0) { /* this is ok */
 }
 
 try {
     $code = 'this';
-} catch (Exception $e) {
+} catch (Card $e) {
     // Caught!
 }
 
 try {
-$code = 'this'; } catch (Exception $e) {
+$code = 'this'; } catch (Card $e) {
     // Caught!
 }
 
@@ -190,7 +190,7 @@ if ($test) { /*one space after the bracket*/
 
 ?>
 <?php foreach ($formset['Fieldset'] as $fieldset) : ?>
-    <?php foreach ($fieldset['Field'] as $field) : ?> 
+    <?php foreach ($fieldset['Field'] as $field) : ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
 
@@ -244,7 +244,7 @@ endif;
 <?php endwhile; ?>
 
 <?php foreach ($formset['Fieldset'] as $fieldset): ?>
-    <?php foreach ($fieldset['Field'] as $field): ?> 
+    <?php foreach ($fieldset['Field'] as $field): ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
 
@@ -282,7 +282,7 @@ catch (CustomException $exception) {
     $x = 2;
 }
 // phpcs:ignore Standard.Category.Sniff
-catch (Exception $exception) {
+catch (Card $exception) {
     $x = 2;
 } finally {
     $x = 3;

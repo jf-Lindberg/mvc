@@ -2,15 +2,19 @@
 
 namespace App\Card;
 
+use Exception;
+
 class Deck implements DeckInterface
 {
-    private array $deck;
+    protected array $deck;
+    private bool $isShuffled;
 
     public function __construct()
     {
         $this->createDeck();
+        $this->isShuffled = false;
     }
-    // USE TRAITS TO IMPLEMENT BELOW WHEN ADDING DECK2
+
     /**
      * Creates a deck.
      *
@@ -27,6 +31,7 @@ class Deck implements DeckInterface
             }
         }
     }
+
     /**
      * Returns an array with the "stringified" deck.
      *
@@ -41,6 +46,11 @@ class Deck implements DeckInterface
         return $stringifiedDeck;
     }
 
+    /**
+     * Returns remainder of cards in the deck
+     *
+     * @return int length of deck
+     */
     public function getLength(): int
     {
         return count($this->deck);
@@ -54,17 +64,27 @@ class Deck implements DeckInterface
     public function shuffle(): void
     {
         shuffle($this->deck);
+        $this->isShuffled = true;
+    }
+
+    public function isShuffled(): bool
+    {
+        return $this->isShuffled;
     }
 
     /**
-     * Draws a random card from the deck.
+     * Draws $countOfCards random cards from the deck.
      *
      * @param int $countOfCards
      * @return array
+     * @throws Exception
      */
     public function draw(int $countOfCards): array
     {
         $cardArray = [];
+        if ($this->getLength() - $countOfCards < 0) {
+            throw new Exception("Not enough cards");
+        }
         for ($i = 0; $i < $countOfCards; $i++) {
             $card = array_splice($this->deck, ($this->getLength() - 1), 1);
             $cardArray[] = $card[0]->getCardAsArray();

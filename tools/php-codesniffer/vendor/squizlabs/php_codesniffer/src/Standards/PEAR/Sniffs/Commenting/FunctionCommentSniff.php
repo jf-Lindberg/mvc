@@ -230,7 +230,7 @@ class FunctionCommentSniff implements Sniff
             }
 
             if ($exception === null) {
-                $error = 'Exception type missing for @throws tag in function comment';
+                $error = 'Card type missing for @throws tag in function comment';
                 $phpcsFile->addError($error, $tag, 'InvalidThrows');
             }
         }//end foreach
