@@ -23,10 +23,12 @@ class Deck implements DeckInterface
     public function createDeck(): void
     {
         $this->deck = [];
+        $ranks = ['Joker', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung', 'Ess'];
+        $suits = ['Hjärter', 'Spader', 'Ruter', 'Klöver'];
         for ($i = 0; $i < 4; $i++) {
-            for ($j = 2; $j < 15; $j++) {
+            for ($j = 1; $j < 14; $j++) {
                 $card = new Card();
-                $card->setCard($i, $j);
+                $card->setCard($suits[$i], $ranks[$j]);
                 $this->deck[] = $card;
             }
         }
@@ -39,41 +41,15 @@ class Deck implements DeckInterface
      */
     public function getDeck(): array
     {
-        $stringifiedDeck = [];
+        $deck = [];
         foreach ($this->deck as $card) {
-            $stringifiedDeck[] = $card->getCardAsArray();
+            $deck[$card->title] = $card->getCard();
         }
-        return $stringifiedDeck;
+        return $deck;
     }
 
     /**
-     * Returns remainder of cards in the deck
-     *
-     * @return int length of deck
-     */
-    public function getLength(): int
-    {
-        return count($this->deck);
-    }
-
-    /**
-     * Shuffles all cards in the deck.
-     *
-     * @return void
-     */
-    public function shuffle(): void
-    {
-        shuffle($this->deck);
-        $this->isShuffled = true;
-    }
-
-    public function isShuffled(): bool
-    {
-        return $this->isShuffled;
-    }
-
-    /**
-     * Draws $countOfCards random cards from the deck.
+     * Draws $countOfCards cards from the deck.
      *
      * @param int $countOfCards
      * @return array
@@ -87,8 +63,39 @@ class Deck implements DeckInterface
         }
         for ($i = 0; $i < $countOfCards; $i++) {
             $card = array_splice($this->deck, ($this->getLength() - 1), 1);
-            $cardArray[] = $card[0]->getCardAsArray();
+            $cardArray[$card[0]->title] = $card[0]->getCard();
         }
         return $cardArray;
+    }
+
+    /**
+     * Shuffles all cards in the deck.
+     *
+     * @return void
+     */
+    public function shuffle(): void
+    {
+        shuffle($this->deck);
+        $this->isShuffled = true;
+    }
+
+    /**
+     * Returns whether deck is shuffled or not.
+     *
+     * @return bool
+     */
+    public function isShuffled(): bool
+    {
+        return $this->isShuffled;
+    }
+
+    /**
+     * Returns remainder of cards in the deck
+     *
+     * @return int length of deck
+     */
+    public function getLength(): int
+    {
+        return count($this->deck);
     }
 }

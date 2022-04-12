@@ -1,0 +1,2 @@
+Använda associativa arrayer för getdeck - detta kräver att alla template-filer ändras för att reflektera key-value-paren.
+För att få unicode på korten krävs även att en till array skickas med som konverterar från ex "Hjärter" till "&hearts;"

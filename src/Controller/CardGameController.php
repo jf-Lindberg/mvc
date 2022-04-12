@@ -61,7 +61,7 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new \App\Card\Deck();
         $deck->shuffle();
         $data = [
             "title" => "Shuffle",
