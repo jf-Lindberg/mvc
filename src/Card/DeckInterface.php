@@ -32,7 +32,7 @@ interface DeckInterface
     public function shuffle(): void;
 
     /**
-     * Draws a random card from the deck.
+     * Draws a card from the deck.
      *
      * @param int $countOfCards
      * @return array

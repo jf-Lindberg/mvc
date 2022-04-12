@@ -27,8 +27,7 @@ class Deck implements DeckInterface
         $suits = ['Hjärter', 'Spader', 'Ruter', 'Klöver'];
         for ($i = 0; $i < 4; $i++) {
             for ($j = 1; $j < 14; $j++) {
-                $card = new Card();
-                $card->setCard($suits[$i], $ranks[$j]);
+                $card = new Card($suits[$i], $ranks[$j]);
                 $this->deck[] = $card;
             }
         }
@@ -90,7 +89,7 @@ class Deck implements DeckInterface
     }
 
     /**
-     * Returns remainder of cards in the deck
+     * Returns remainder of cards in the deck.
      *
      * @return int length of deck
      */

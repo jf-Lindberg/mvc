@@ -16,8 +16,7 @@ class CardJSONController extends AbstractController
      */
     public function apiDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new \App\Card\Deck();
         $data = [
             "deck" => $deck->getDeck()
@@ -45,9 +44,8 @@ class CardJSONController extends AbstractController
      */
     public function apiDraw(
         SessionInterface $session,
-        int              $numberOfCards = 1
-    ): Response
-    {
+        int $numberOfCards = 1
+    ): Response {
         $deck = $session->get("deck") ?? new \App\Card\Deck();
 
         try {
@@ -71,10 +69,9 @@ class CardJSONController extends AbstractController
      */
     public function apiDeal(
         SessionInterface $session,
-        int              $players = 3,
-        int              $cards = 4
-    ): Response
-    {
+        int $players = 3,
+        int $cards = 4
+    ): Response {
         $deck = $session->get("deck") ?? new \App\Card\Deck();
         $playerArr = [];
 
@@ -84,15 +81,14 @@ class CardJSONController extends AbstractController
 
         try {
             for ($i = 1; $i <= $players; $i++) {
-                $player = $playerArr["Player " . $i] ??new \App\Card\Player($i, $deck);
+                $player = $playerArr[$i] ?? new \App\Card\Player($i, $deck);
                 $player->dealHand($cards);
                 $playerArr[$i] = [
                     "id" => $player->getId(),
                     "hand" => $player->getHand()
                 ];
             }
-        } catch (Exception $e)
-        {
+        } catch (Exception $e) {
         }
 
         $session->set("deck", $deck);

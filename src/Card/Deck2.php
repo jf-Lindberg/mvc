@@ -13,8 +13,7 @@ class Deck2 extends Deck implements DeckInterface
     {
         parent::createDeck();
         for ($i = 0; $i < 2; $i++) {
-            $card = new Card();
-            $card->setCard('Joker', 'Joker');
+            $card = new Card('Joker', 'Joker');
             $this->deck[] = $card;
         }
     }

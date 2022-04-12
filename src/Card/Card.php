@@ -8,9 +8,23 @@ namespace App\Card;
 
 class Card
 {
-    protected string $rank; #valör
-    protected string $suit; #färg
-    protected string $unicode;
+    private string $rank; #valör
+    private string $suit; #färg
+    private string $unicode;
+
+    public function __construct(string $suit, string $rank)
+    {
+        $unicode = [
+            'Hjärter' => '&hearts;',
+            'Spader' => '&spades;',
+            'Ruter' => '&diams;',
+            'Klöver' => '&clubs;',
+            'Joker' => ''
+        ];
+        $this->suit = $suit;
+        $this->rank = $rank;
+        $this->unicode = $unicode[$suit];
+    }
 
     /**
      * Getter for rank, suit and unicode of card.
@@ -24,26 +38,5 @@ class Card
             "suit" => $this->suit,
             "unicode" => $this->unicode
         ];
-    }
-
-    /**
-     * Setter for card.
-     *
-     * @param string $rank
-     * @param string $suit
-     * @return void
-     */
-    public function setCard(string $suit, string $rank): void
-    {
-        $unicode = [
-            'Hjärter' => '&hearts;',
-            'Spader' => '&spades;',
-            'Ruter' => '&diams;',
-            'Klöver' => '&clubs;',
-            'Joker' => ''
-        ];
-        $this->suit = $suit;
-        $this->rank = $rank;
-        $this->unicode = $unicode[$suit];
     }
 }
