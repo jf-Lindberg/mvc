@@ -13,7 +13,7 @@ class Card
     protected string $unicode;
 
     /**
-     * Getter for rank and suit of card.
+     * Getter for rank, suit and unicode of card.
      *
      * @return array
      */
@@ -27,7 +27,7 @@ class Card
     }
 
     /**
-     * Setter for rank and suit of card.
+     * Setter for card.
      *
      * @param string $rank
      * @param string $suit

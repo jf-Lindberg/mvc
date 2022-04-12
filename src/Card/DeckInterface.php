@@ -12,7 +12,7 @@ interface DeckInterface
     public function createDeck(): void;
 
     /**
-     * Returns an array with the "stringified" deck.
+     * Returns an array of cards representing the deck.
      *
      * @return array
      */

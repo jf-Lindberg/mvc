@@ -13,6 +13,12 @@ class Player
     private int $id;
     private Hand $hand;
 
+    /**
+     * Constructs a player.
+     *
+     * @param int $id
+     * @param Deck $deck
+     */
     public function __construct(int $id, Deck $deck)
     {
         $this->id = $id;
@@ -20,6 +26,8 @@ class Player
     }
 
     /**
+     * Deals a new hand for the player
+     *
      * @throws Exception
      */
     public function dealHand(int $cardAmount)
@@ -28,6 +36,8 @@ class Player
     }
 
     /**
+     * Gets player hand
+     *
      * @return array
      */
     public function getHand(): array
@@ -35,6 +45,11 @@ class Player
         return $this->hand->getHand();
     }
 
+    /**
+     * Gets player id
+     *
+     * @return int id
+     */
     public function getId(): int
     {
         return $this->id;

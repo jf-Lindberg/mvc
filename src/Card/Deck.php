@@ -35,7 +35,7 @@ class Deck implements DeckInterface
     }
 
     /**
-     * Returns an array with the "stringified" deck.
+     * Returns an array of cards representing the deck.
      *
      * @return array
      */
