@@ -56,7 +56,7 @@ De konstruktioner som beskrivs ovan har under kursmomentet använts för att ska
 kortspel består av fyra klasser som delar namespace - Card, Deck, Player och Hand. Klassen Card representerar 
 spelkorten och består i grunden bara av attribut som representerar rang och färg på korten samt en metod som hämtar 
 dessa attribut. I Deck skapas en kortlek av Card-objekt, det finns alltså ett kompositionsförhållande med Deck som 
-förälder och Card-objekten som barn. Försvinner kortleken försvinner även korten. Deck-klassen är uppbyggt på ett 
+förälder och Card-objekten som barn. Försvinner kortleken försvinner även korten. Deck-klassen implementerar ett 
 interface som definierar vilka metoder som måste finnas i klassen. Detta är metoder för att skapa, hämta, blanda och 
 dra kort ifrån kortleken samt en som hämtar kortlekens längd. Det finns även en annan kortlek, Deck2. Denna klass ärver 
 från Deck och lägger till två jokrar i kortleken.
