@@ -127,7 +127,10 @@ class CardGameController extends AbstractController
             for ($i = 1; $i <= $players; $i++) {
                 $player = $playerArr[$i] ?? new \App\Card\Player($i, $deck);
                 $player->dealHand($cards);
-                $playerArr[$i] = $player;
+                $playerArr[$i] = [
+                    "id" => $player->getId(),
+                    "hand" => $player->getHand()
+                ];
             }
         } catch (Exception $e) {
             $this->addFlash('info', 'Du kan inte dra så många kort.');

@@ -88,7 +88,8 @@ class CardJSONController extends AbstractController
             for ($i = 1; $i <= $players; $i++) {
                 $player = $playerArr["Player " . $i] ??new \App\Card\Player($i, $deck);
                 $player->dealHand($cards);
-                $playerArr["Player " . $i] = [
+                $playerArr[$i] = [
+                    "id" => $player->getId(),
                     "hand" => $player->getHand()
                 ];
             }

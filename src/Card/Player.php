@@ -35,9 +35,6 @@ class Player
         return $this->hand->getHand();
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
