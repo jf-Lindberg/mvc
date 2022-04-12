@@ -19,8 +19,10 @@ class CardJSONController extends AbstractController
         SessionInterface $session
     ): Response
     {
-        $deck = new \App\Card\Deck;
-        $data = $deck->getDeck();
+        $deck = new \App\Card\Deck();
+        $data = [
+            "deck" => $deck->getDeck()
+        ];
         $session->set("deck", $deck);
 
         return new JsonResponse($data);
@@ -31,9 +33,11 @@ class CardJSONController extends AbstractController
      */
     public function apiShuffle(): Response
     {
-        $deck = new \App\Card\Deck;
+        $deck = new \App\Card\Deck();
         $deck->shuffle();
-        $data = $deck->getDeck();
+        $data = [
+            "deck" => $deck->getDeck()
+        ];
         return new JsonResponse($data);
     }
 
@@ -55,7 +59,49 @@ class CardJSONController extends AbstractController
         }
 
         $session->set("drawn", $drawn);
-        $data = $drawn;
+        $data = [
+            "drawn cards" => $drawn,
+            "cards left" => $deck->getLength()
+        ];
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("card/api/deck/deal/{players}/{cards}", name="api-deal")
+     */
+    public function apiDeal(
+        Request          $request,
+        SessionInterface $session,
+        int              $players = 3,
+        int              $cards = 4
+    ): Response
+    {
+        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $playerArr = [];
+
+        if (!$deck->isShuffled()) {
+            $deck->shuffle();
+        }
+
+        try {
+            for ($i = 1; $i <= $players; $i++) {
+                $player = $playerArr["Player " . $i] ??new \App\Card\Player($i, $deck);
+                $player->dealHand($cards);
+                $playerArr["Player " . $i] = [
+                    "hand" => $player->getHand()
+                ];
+            }
+        } catch (Exception $e)
+        {
+        }
+
+        $session->set("deck", $deck);
+
+        $data = [
+            "players" => $playerArr,
+            "cards left" => $deck->getLength()
+        ];
 
         return new JsonResponse($data);
     }

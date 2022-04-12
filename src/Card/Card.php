@@ -6,14 +6,11 @@
 
 namespace App\Card;
 
-
-
 class Card
 {
     protected string $rank; #valör
     protected string $suit; #färg
     protected string $unicode;
-    public string $title;
 
     /**
      * Getter for rank and suit of card.
@@ -48,6 +45,5 @@ class Card
         $this->suit = $suit;
         $this->rank = $rank;
         $this->unicode = $unicode[$suit];
-        $this->title = $suit . ' ' . $rank;
     }
 }

@@ -43,7 +43,7 @@ class Deck implements DeckInterface
     {
         $deck = [];
         foreach ($this->deck as $card) {
-            $deck[$card->title] = $card->getCard();
+            $deck[] = $card->getCard();
         }
         return $deck;
     }
@@ -63,7 +63,7 @@ class Deck implements DeckInterface
         }
         for ($i = 0; $i < $countOfCards; $i++) {
             $card = array_splice($this->deck, ($this->getLength() - 1), 1);
-            $cardArray[$card[0]->title] = $card[0]->getCard();
+            $cardArray[] = $card[0]->getCard();
         }
         return $cardArray;
     }

@@ -27,8 +27,7 @@ class CardGameController extends AbstractController
      */
     public function deck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new \App\Card\Deck();
         $session->set("deck", $deck);
         $data = [
@@ -43,8 +42,7 @@ class CardGameController extends AbstractController
      */
     public function deck2(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = new \App\Card\Deck2();
         $session->set("deck", $deck);
         $data = [
@@ -59,8 +57,7 @@ class CardGameController extends AbstractController
      */
     public function shuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $deck = $session->get("deck") ?? new \App\Card\Deck();
         $deck->shuffle();
         $data = [
@@ -74,11 +71,10 @@ class CardGameController extends AbstractController
      * @Route("/card/deck/draw/{numberOfCards}", name="card-draw")
      */
     public function draw(
-        Request          $request,
+        Request $request,
         SessionInterface $session,
-        int              $numberOfCards = 1
-    ): Response
-    {
+        int $numberOfCards = 1
+    ): Response {
         $deck = $session->get("deck") ?? new \App\Card\Deck();
         $new = $request->request->get('new');
         $amount = $request->request->get('amount') ?? $numberOfCards;
@@ -112,10 +108,9 @@ class CardGameController extends AbstractController
     public function deal(
         Request $request,
         SessionInterface $session,
-        int              $players = 2,
-        int              $cards = 5
-    ): Response
-    {
+        int $players = 2,
+        int $cards = 5
+    ): Response {
         $deck = $session->get("deck") ?? new \App\Card\Deck();
         $new = $request->request->get('new');
         $playerArr = [];
