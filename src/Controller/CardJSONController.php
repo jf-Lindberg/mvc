@@ -71,7 +71,6 @@ class CardJSONController extends AbstractController
      * @Route("card/api/deck/deal/{players}/{cards}", name="api-deal")
      */
     public function apiDeal(
-        Request          $request,
         SessionInterface $session,
         int              $players = 3,
         int              $cards = 4
