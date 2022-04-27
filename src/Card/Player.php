@@ -10,18 +10,18 @@ use Exception;
 
 class Player
 {
-    private int $id;
+    private int $playerId;
     private Hand $hand;
 
     /**
      * Constructs a player.
      *
-     * @param int $id
+     * @param int $playerId
      * @param Deck $deck
      */
-    public function __construct(int $id, Deck $deck)
+    public function __construct(int $playerId, Deck $deck)
     {
-        $this->id = $id;
+        $this->playerId = $playerId;
         $this->hand = new Hand($deck);
     }
 
@@ -29,6 +29,7 @@ class Player
      * Deals a new hand for the player
      *
      * @throws Exception
+     * @return void
      */
     public function dealHand(int $cardAmount)
     {
@@ -38,7 +39,7 @@ class Player
     /**
      * Gets player hand
      *
-     * @return array
+     * @return array<Card>
      */
     public function getHand(): array
     {
@@ -46,12 +47,24 @@ class Player
     }
 
     /**
+     * @return array<array<string, string>>
+     */
+    public function getJsonHand(): array
+    {
+        $jsonHand = [];
+        foreach ($this->hand->getHand() as $card) {
+            $jsonHand[] = $card->getJsonCard();
+        }
+        return $jsonHand;
+    }
+
+    /**
      * Gets player id
      *
-     * @return int id
+     * @return int
      */
-    public function getId(): int
+    public function getPlayerId(): int
     {
-        return $this->id;
+        return $this->playerId;
     }
 }

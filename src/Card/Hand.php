@@ -6,8 +6,12 @@ use Exception;
 
 class Hand
 {
-    private Deck $deck;
+    /**
+     * @var array<Card>
+     */
     private array $handArray;
+    private Deck $deck;
+
 
     /**
      * Constructs a hand based on a deck.
@@ -24,6 +28,7 @@ class Hand
      * Draws a new hand.
      *
      * @throws Exception
+     * @return void
      */
     public function drawHand(int $cardAmount)
     {
@@ -33,7 +38,7 @@ class Hand
     /**
      * Gets current hand.
      *
-     * @return array
+     * @return array<Card>
      */
     public function getHand(): array
     {

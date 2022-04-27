@@ -2,10 +2,13 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+    <pre>
+        {{ players | json_encode(constant('JSON_PRETTY_PRINT')) }}
+    </pre>
     <div class="flex-column-center">
         {% for player in players %}
             <p class="player">Spelare {{ player.id }}</p>
-            {% set deckArr = player.hand %}
+            {% set deck = player.hand %}
             {{ include ("block/show-cards.html.twig") }}
         {% endfor %}
         {{ include ("block/flash-message.html.twig") }}

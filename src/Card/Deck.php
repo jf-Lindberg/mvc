@@ -4,8 +4,11 @@ namespace App\Card;
 
 use Exception;
 
-class Deck implements DeckInterface
+class Deck
 {
+    /**
+     * @var array<Card> $deck
+     */
     protected array $deck;
     private bool $isShuffled;
 
@@ -34,37 +37,41 @@ class Deck implements DeckInterface
     }
 
     /**
-     * Returns an array of cards representing the deck.
-     *
-     * @return array
+     * @return array<Card>
      */
     public function getDeck(): array
     {
-        $deck = [];
-        foreach ($this->deck as $card) {
-            $deck[] = $card->getCard();
-        }
-        return $deck;
+        return $this->deck;
     }
 
     /**
-     * Draws $countOfCards cards from the deck.
-     *
+     * @return array<array<string, string>>
+     */
+    public function getJsonDeck(): array
+    {
+        $res = [];
+        foreach ($this->deck as $card) {
+            $res[] = $card->getJsonCard();
+        }
+        return $res;
+    }
+
+    /**
      * @param int $countOfCards
-     * @return array
+     * @return array<Card>
      * @throws Exception
      */
     public function draw(int $countOfCards): array
     {
-        $cardArray = [];
+        $drawnCards = [];
         if ($this->getLength() - $countOfCards < 0) {
             throw new Exception("Not enough cards");
         }
         for ($i = 0; $i < $countOfCards; $i++) {
             $card = array_splice($this->deck, ($this->getLength() - 1), 1);
-            $cardArray[] = $card[0]->getCard();
+            $drawnCards[] = $card[0];
         }
-        return $cardArray;
+        return $drawnCards;
     }
 
     /**
@@ -91,7 +98,7 @@ class Deck implements DeckInterface
     /**
      * Returns remainder of cards in the deck.
      *
-     * @return int length of deck
+     * @return int
      */
     public function getLength(): int
     {

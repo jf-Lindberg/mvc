@@ -29,14 +29,38 @@ class Card
     /**
      * Getter for rank, suit and unicode of card.
      *
-     * @return array
+     * @return array<string, string>
      */
-    public function getCard(): array
+    public function getJsonCard(): array
     {
         return [
-            "rank" => $this->rank,
-            "suit" => $this->suit,
-            "unicode" => $this->unicode
+            "suit" => $this->getSuit(),
+            "rank" => $this->getRank(),
+            "unicode" => $this->getUnicode()
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getRank(): string
+    {
+        return $this->rank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSuit(): string
+    {
+        return $this->suit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnicode(): string
+    {
+        return $this->unicode;
     }
 }

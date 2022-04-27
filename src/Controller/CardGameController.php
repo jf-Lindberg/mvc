@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Card\Card;
+use App\Card\Deck;
+use App\Card\Deck2;
+use App\Card\Player;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +32,11 @@ class CardGameController extends AbstractController
     public function deck(
         SessionInterface $session
     ): Response {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $session->set("deck", $deck);
         $data = [
             "title" => "Deck",
-            "deckArr" => $deck->getDeck()
+            "deck" => $deck->getDeck()
         ];
         return $this->render('card/deck.html.twig', $data);
     }
@@ -43,11 +47,11 @@ class CardGameController extends AbstractController
     public function deck2(
         SessionInterface $session
     ): Response {
-        $deck = new \App\Card\Deck2();
+        $deck = new Deck2();
         $session->set("deck", $deck);
         $data = [
             "title" => "Deck",
-            "deckArr" => $deck->getDeck()
+            "deck" => $deck->getDeck()
         ];
         return $this->render('card/deck.html.twig', $data);
     }
@@ -58,11 +62,11 @@ class CardGameController extends AbstractController
     public function shuffle(
         SessionInterface $session
     ): Response {
-        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new Deck();
         $deck->shuffle();
         $data = [
             "title" => "Shuffle",
-            "deckArr" => $deck->getDeck()
+            "deck" => $deck->getDeck()
         ];
         return $this->render('card/deck.html.twig', $data);
     }
@@ -75,12 +79,12 @@ class CardGameController extends AbstractController
         SessionInterface $session,
         int $numberOfCards = 1
     ): Response {
-        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new Deck();
         $new = $request->request->get('new');
         $amount = $request->request->get('amount') ?? $numberOfCards;
 
         if ($new) {
-            $deck = new \App\Card\Deck();
+            $deck = new Deck();
             $deck->shuffle();
         }
 
@@ -96,7 +100,7 @@ class CardGameController extends AbstractController
 
         $data = [
             "title" => "Draw",
-            "deckArr" => $drawn,
+            "deck" => $drawn,
             "amountLeft" => $deck->getLength()
         ];
         return $this->render('card/draw.html.twig', $data);
@@ -111,12 +115,12 @@ class CardGameController extends AbstractController
         int $players = 2,
         int $cards = 5
     ): Response {
-        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new Deck();
         $new = $request->request->get('new');
         $playerArr = [];
 
         if ($new) {
-            $deck = new \App\Card\Deck();
+            $deck = new Deck();
         }
 
         if (!$deck->isShuffled()) {
@@ -125,10 +129,10 @@ class CardGameController extends AbstractController
 
         try {
             for ($i = 1; $i <= $players; $i++) {
-                $player = $playerArr[$i] ?? new \App\Card\Player($i, $deck);
+                $player = new Player($i, $deck);
                 $player->dealHand($cards);
                 $playerArr[$i] = [
-                    "id" => $player->getId(),
+                    "id" => $player->getPlayerId(),
                     "hand" => $player->getHand()
                 ];
             }

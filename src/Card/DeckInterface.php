@@ -14,7 +14,7 @@ interface DeckInterface
     /**
      * Returns an array of cards representing the deck.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getDeck(): array;
 
@@ -35,7 +35,7 @@ interface DeckInterface
      * Draws a card from the deck.
      *
      * @param int $countOfCards
-     * @return array
+     * @return array<mixed>
      */
     public function draw(int $countOfCards): array;
 }

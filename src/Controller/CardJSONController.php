@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Card\Deck;
+use App\Card\Player;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,9 +19,9 @@ class CardJSONController extends AbstractController
     public function apiDeck(
         SessionInterface $session
     ): Response {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $data = [
-            "deck" => $deck->getDeck()
+            "deck" => $deck->getJsonDeck()
         ];
         $session->set("deck", $deck);
 
@@ -31,10 +33,10 @@ class CardJSONController extends AbstractController
      */
     public function apiShuffle(): Response
     {
-        $deck = new \App\Card\Deck();
+        $deck = new Deck();
         $deck->shuffle();
         $data = [
-            "deck" => $deck->getDeck()
+            "deck" => $deck->getJsonDeck()
         ];
         return new JsonResponse($data);
     }
@@ -46,7 +48,7 @@ class CardJSONController extends AbstractController
         SessionInterface $session,
         int $numberOfCards = 1
     ): Response {
-        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new Deck();
 
         try {
             $drawn = $deck->draw($numberOfCards);
@@ -56,8 +58,12 @@ class CardJSONController extends AbstractController
         }
 
         $session->set("drawn", $drawn);
+        $drawnJson = [];
+        foreach ($drawn as $card) {
+            $drawnJson[] = $card->getJsonCard();
+        }
         $data = [
-            "drawn cards" => $drawn,
+            "drawn cards" => $drawnJson,
             "cards left" => $deck->getLength()
         ];
 
@@ -72,7 +78,7 @@ class CardJSONController extends AbstractController
         int $players = 3,
         int $cards = 4
     ): Response {
-        $deck = $session->get("deck") ?? new \App\Card\Deck();
+        $deck = $session->get("deck") ?? new Deck();
         $playerArr = [];
 
         if (!$deck->isShuffled()) {
@@ -81,14 +87,23 @@ class CardJSONController extends AbstractController
 
         try {
             for ($i = 1; $i <= $players; $i++) {
-                $player = $playerArr[$i] ?? new \App\Card\Player($i, $deck);
+                $player = new Player($i, $deck);
                 $player->dealHand($cards);
                 $playerArr[$i] = [
-                    "id" => $player->getId(),
-                    "hand" => $player->getHand()
+                    "id" => $player->getPlayerId(),
+                    "hand" => $player->getJsonHand()
                 ];
+/*                $player = new Player($i, $deck);
+                $playerId = $player->getPlayerId();
+                $player->dealHand($cards);
+                $playerHand = $player->getHand();
+                $playerArr[$i] = [
+                    "id" => $player->$playerId,
+                    "hand" => $player->$playerHand
+                ];*/
             }
         } catch (Exception $e) {
+            echo $e;
         }
 
         $session->set("deck", $deck);
