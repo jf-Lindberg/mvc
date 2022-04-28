@@ -4,10 +4,10 @@ namespace App\Card;
 
 use Exception;
 
-class Deck
+class Deck implements DeckInterface
 {
     /**
-     * @var array<Card> $deck
+     * @var array<CardInterface> $deck
      */
     protected array $deck;
     private bool $isShuffled;
@@ -37,14 +37,15 @@ class Deck
     }
 
     /**
-     * @return array<Card>
+     * @return array<CardInterface>
      */
     public function getDeck(): array
     {
         return $this->deck;
     }
 
-    /**
+    /** Returns array of arrays consisting of card values
+     *
      * @return array<array<string, string>>
      */
     public function getJsonDeck(): array

@@ -4,21 +4,21 @@ namespace App\Card;
 
 use Exception;
 
-class Hand
+class Hand implements HandInterface
 {
     /**
      * @var array<Card>
      */
     private array $handArray;
-    private Deck $deck;
+    private DeckInterface $deck;
 
 
     /**
      * Constructs a hand based on a deck.
      *
-     * @param Deck $deck
+     * @param DeckInterface $deck
      */
-    public function __construct(Deck $deck)
+    public function __construct(DeckInterface $deck)
     {
         $this->deck = $deck;
         $this->handArray = [];

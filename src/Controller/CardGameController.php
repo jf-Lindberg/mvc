@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Card\Card;
 use App\Card\Deck;
 use App\Card\Deck2;
 use App\Card\Player;

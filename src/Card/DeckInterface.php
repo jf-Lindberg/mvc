@@ -2,6 +2,8 @@
 
 namespace App\Card;
 
+use Exception;
+
 interface DeckInterface
 {
     /**
@@ -14,28 +16,41 @@ interface DeckInterface
     /**
      * Returns an array of cards representing the deck.
      *
-     * @return array<mixed>
+     * @return array<CardInterface>
      */
     public function getDeck(): array;
 
-    /**
-     * Returns remainder of cards in the deck
+    /** Returns array of arrays consisting of card values
      *
-     * @return int length of deck
+     * @return array<array<string, string>>
      */
-    public function getLength(): int;
+    public function getJsonDeck(): array;
 
-    /** Shuffles all the cards in the deck.
+    /**
+     * @param int $countOfCards
+     * @return array<Card>
+     * @throws Exception
+     */
+    public function draw(int $countOfCards): array;
+
+    /**
+     * Shuffles all cards in the deck.
      *
      * @return void
      */
     public function shuffle(): void;
 
     /**
-     * Draws a card from the deck.
+     * Returns whether deck is shuffled or not.
      *
-     * @param int $countOfCards
-     * @return array<mixed>
+     * @return bool
      */
-    public function draw(int $countOfCards): array;
+    public function isShuffled(): bool;
+
+    /**
+     * Returns remainder of cards in the deck
+     *
+     * @return int
+     */
+    public function getLength(): int;
 }

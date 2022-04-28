@@ -8,10 +8,17 @@ namespace App\Card;
 
 class Card
 {
+    /**
+     * @var string
+     */
     private string $rank; #valör
     private string $suit; #färg
     private string $unicode;
 
+    /*** Constructor for Card. Includes suit, rank and unicode.
+     * @param string $suit
+     * @param string $rank
+     */
     public function __construct(string $suit, string $rank)
     {
         $unicode = [
@@ -34,9 +41,9 @@ class Card
     public function getJsonCard(): array
     {
         return [
-            "suit" => $this->getSuit(),
-            "rank" => $this->getRank(),
-            "unicode" => $this->getUnicode()
+            "suit" => $this->suit,
+            "rank" => $this->rank,
+            "unicode" => $this->unicode
         ];
     }
 

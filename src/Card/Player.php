@@ -8,18 +8,18 @@ namespace App\Card;
 
 use Exception;
 
-class Player
+class Player implements PlayerInterface
 {
     private int $playerId;
-    private Hand $hand;
+    private HandInterface $hand;
 
     /**
      * Constructs a player.
      *
      * @param int $playerId
-     * @param Deck $deck
+     * @param DeckInterface $deck
      */
-    public function __construct(int $playerId, Deck $deck)
+    public function __construct(int $playerId, DeckInterface $deck)
     {
         $this->playerId = $playerId;
         $this->hand = new Hand($deck);
