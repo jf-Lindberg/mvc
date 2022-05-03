@@ -59,7 +59,7 @@ class Deck implements DeckInterface
 
     /**
      * @param int $countOfCards
-     * @return array<Card>
+     * @return array<int, CardInterface>
      * @throws Exception
      */
     public function draw(int $countOfCards): array
@@ -82,7 +82,7 @@ class Deck implements DeckInterface
      */
     public function shuffle(): void
     {
-        shuffle($this->deck);
+        shuffle( $this->deck);
         $this->isShuffled = true;
     }
 

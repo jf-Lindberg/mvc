@@ -35,6 +35,15 @@ class Hand implements HandInterface
         $this->handArray = $this->deck->draw($cardAmount);
     }
 
+    public function drawMoreCards(int $cardAmount)
+    {
+        $drawn = $this->deck->draw($cardAmount);
+        foreach ($drawn as $card)
+        {
+            $this->handArray[] = $card;
+        }
+    }
+
     /**
      * Gets current hand.
      *

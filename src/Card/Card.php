@@ -6,7 +6,7 @@
 
 namespace App\Card;
 
-class Card
+class Card implements CardInterface
 {
     /**
      * @var string
@@ -14,6 +14,7 @@ class Card
     private string $rank; #valör
     private string $suit; #färg
     private string $unicode;
+    private int $value;
 
     /*** Constructor for Card. Includes suit, rank and unicode.
      * @param string $suit
@@ -28,9 +29,26 @@ class Card
             'Klöver' => '&clubs;',
             'Joker' => ''
         ];
+        $value = [
+            'Joker' => 1,
+            '2' => 2,
+            '3' => 3,
+            '4' => 4,
+            '5' => 5,
+            '6' => 6,
+            '7' => 7,
+            '8' => 8,
+            '9' => 9,
+            '10' => 10,
+            'Knekt' => 11,
+            'Dam' => 12,
+            'Kung' => 13,
+            'Ess' => 14
+        ];
         $this->suit = $suit;
         $this->rank = $rank;
         $this->unicode = $unicode[$suit];
+        $this->value = $value[$rank];
     }
 
     /**
@@ -69,5 +87,13 @@ class Card
     public function getUnicode(): string
     {
         return $this->unicode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getValue(): int
+    {
+        return $this->value;
     }
 }

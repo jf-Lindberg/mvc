@@ -16,4 +16,29 @@ class Game
         $this->bank = $bank;
         $this->player = $player;
     }
+
+    /**
+     * @throws Exception
+     */
+    public function dealPlayer ()
+    {
+        $hand = new Hand($this->deck);
+        $hand->drawHand(1);
+        $this->player->setHand($hand);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function dealBank ()
+    {
+        $hand = new Hand($this->deck);
+        $hand->drawHand(1);
+        $this->bank->setHand($hand);
+    }
+
+    public function hit ()
+    {
+
+    }
 }

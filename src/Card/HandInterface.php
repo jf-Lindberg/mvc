@@ -17,7 +17,7 @@ interface HandInterface
     /**
      * Gets current hand.
      *
-     * @return array<array<string>>
+     * @return array<Card>
      */
     public function getHand(): array;
 }
