@@ -91,7 +91,7 @@ class CardJSONController extends AbstractController
                 $hand = $deck->draw($amountOfCards);
                 $player->addCardsToHand($hand);
                 $arrayOfPlayers[$id] = [
-                    "id" => $player->getPlayerId(),
+                    "id" => $player->getIdent(),
                     "hand" => $player->getJsonHand()
                 ];
             }

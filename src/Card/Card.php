@@ -6,7 +6,7 @@
 
 namespace App\Card;
 
-class Card
+class Card implements CardInterface
 {
     /** Integer representing the cards suit:
      *  0 -> Spades
@@ -191,7 +191,7 @@ class Card
 
     /** Returns an array representing the card in a JSON-friendly format.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getJsonCard(): array
     {

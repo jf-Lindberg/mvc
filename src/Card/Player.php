@@ -14,7 +14,13 @@ class Player
      *
      * @var int
      */
-    private int $playerId;
+    private int $ident;
+
+    /** Integer representing the score of the player.
+     *
+     * @var int
+     */
+    private int $score;
 
     /** Array representing the players hand.
      *
@@ -31,7 +37,9 @@ class Player
      */
     public function __construct(int $playerId)
     {
-        $this->playerId = $playerId;
+        $this->ident = $playerId;
+        $this->score = 0;
+        $this->cardsOnHand = [];
     }
 
     /** Adds cards to the array representing the player hand.
@@ -39,9 +47,11 @@ class Player
      * @param array<Card> $cards
      * @return void
      */
-    public function addCardsToHand(array $cards) {
+    public function addCardsToHand(array $cards)
+    {
         foreach ($cards as $card) {
             $this->cardsOnHand[] = $card;
+            $this->score += $card->getRankValue();
         }
     }
 
@@ -60,9 +70,9 @@ class Player
      *
      * @return int
      */
-    public function getPlayerId(): int
+    public function getIdent(): int
     {
-        return $this->playerId;
+        return $this->ident;
     }
 
     /** Gets the array representing the cards on hand.

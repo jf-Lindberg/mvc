@@ -7,7 +7,7 @@ interface CardInterface
     /**
      * Getter for rank, suit and unicode of card.
      *
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function getJsonCard(): array;
 
