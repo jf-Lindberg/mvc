@@ -1,12 +1,10 @@
 <?php
 
-/**
- * @author Filip Lindberg
- */
-
 namespace App\Card;
 
-class Card
+use Exception;
+
+class newCard
 {
     private int $suitValue;
     private int $rankValue;
@@ -17,15 +15,15 @@ class Card
         $this->rankValue = $rankValue;
     }
 
-    public function getSuitValue(): int
-    {
-        return $this->suitValue;
-    }
-
-    public function getRankValue(): int
-    {
-        return $this->rankValue;
-    }
+//    public function getSuitValue(): int
+//    {
+//        return $this->suitValue;
+//    }
+//
+//    public function getRankValue(): int
+//    {
+//        return $this->rankValue;
+//    }
 
     public function getSuit(): string
     {
@@ -122,19 +120,19 @@ class Card
             'Klöver Knekt' => '&#127195;',
             'Klöver Dam' => '&#127197;',
             'Klöver Kung' => '&#127198;',
-            'Joker 1' => '&#127199;'
+            'Joker' => '&#127199;'
         ];
 
         $card = $this->getCardAsString();
         return $unicode[$card];
     }
 
-    public function getJsonCard(): array
-    {
-        return [
-            "suit" => $this->getSuit(),
-            "rank" => $this->getRank(),
-            "unicode" => $this->getUnicode()
-        ];
-    }
+//    public function getCardAsArray(): array
+//    {
+//        return [
+//            "suit" => $this->getSuitAsString(),
+//            "rank" => $this->getRankAsString(),
+//            "unicode" => $this->getCardAsUnicode()
+//        ];
+//    }
 }

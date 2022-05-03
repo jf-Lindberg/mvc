@@ -6,16 +6,16 @@ use Exception;
 
 class Deck implements DeckInterface
 {
-    /**
-     * @var array<CardInterface> $deck
-     */
+    protected int $size;
     protected array $deck;
     private bool $isShuffled;
 
     public function __construct()
     {
-        $this->createDeck();
+        $this->size = 0;
+        $this->deck = [];
         $this->isShuffled = false;
+        $this->createDeck();
     }
 
     /**
@@ -25,29 +25,29 @@ class Deck implements DeckInterface
      */
     public function createDeck(): void
     {
-        $this->deck = [];
-        $ranks = ['Joker', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung', 'Ess'];
-        $suits = ['Hjärter', 'Spader', 'Ruter', 'Klöver'];
-        for ($i = 0; $i < 4; $i++) {
-            for ($j = 1; $j < 14; $j++) {
-                $card = new Card($suits[$i], $ranks[$j]);
-                $this->deck[] = $card;
+//        $this->deck = [];
+//        $ranks = ['Joker', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung', 'Ess'];
+//        $suits = ['Hjärter', 'Spader', 'Ruter', 'Klöver'];
+//        for ($i = 0; $i < 4; $i++) {
+//            for ($j = 1; $j < 14; $j++) {
+//                $card = new Card($suits[$i], $ranks[$j]);
+//                $this->deck[] = $card;
+//            }
+//        }
+
+        for ($suit = 0; $suit <= 3; $suit++) {
+            for ($rank = 2; $rank <= 14; $rank++) {
+                $this->deck[$this->size] = new Card($suit, $rank);
+                $this->size++;
             }
         }
     }
 
-    /**
-     * @return array<CardInterface>
-     */
     public function getDeck(): array
     {
         return $this->deck;
     }
 
-    /** Returns array of arrays consisting of card values
-     *
-     * @return array<array<string, string>>
-     */
     public function getJsonDeck(): array
     {
         $res = [];
@@ -57,11 +57,6 @@ class Deck implements DeckInterface
         return $res;
     }
 
-    /**
-     * @param int $countOfCards
-     * @return array<int, CardInterface>
-     * @throws Exception
-     */
     public function draw(int $countOfCards): array
     {
         $drawnCards = [];
@@ -75,32 +70,17 @@ class Deck implements DeckInterface
         return $drawnCards;
     }
 
-    /**
-     * Shuffles all cards in the deck.
-     *
-     * @return void
-     */
     public function shuffle(): void
     {
         shuffle( $this->deck);
         $this->isShuffled = true;
     }
 
-    /**
-     * Returns whether deck is shuffled or not.
-     *
-     * @return bool
-     */
     public function isShuffled(): bool
     {
         return $this->isShuffled;
     }
 
-    /**
-     * Returns remainder of cards in the deck.
-     *
-     * @return int
-     */
     public function getLength(): int
     {
         return count($this->deck);
