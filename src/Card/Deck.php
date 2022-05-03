@@ -33,11 +33,17 @@ class Deck implements DeckInterface
         }
     }
 
+    /**
+     * @return array
+     */
     public function getDeck(): array
     {
         return $this->deck;
     }
 
+    /**
+     * @return array
+     */
     public function getJsonDeck(): array
     {
         $res = [];
@@ -47,6 +53,11 @@ class Deck implements DeckInterface
         return $res;
     }
 
+    /**
+     * @param int $countOfCards
+     * @return array
+     * @throws Exception
+     */
     public function draw(int $countOfCards): array
     {
         $drawnCards = [];
@@ -60,17 +71,26 @@ class Deck implements DeckInterface
         return $drawnCards;
     }
 
+    /**
+     * @return void
+     */
     public function shuffle(): void
     {
         shuffle( $this->deck);
         $this->isShuffled = true;
     }
 
+    /**
+     * @return bool
+     */
     public function isShuffled(): bool
     {
         return $this->isShuffled;
     }
 
+    /**
+     * @return int
+     */
     public function getLength(): int
     {
         return count($this->deck);

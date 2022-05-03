@@ -8,25 +8,73 @@ namespace App\Card;
 
 class Card
 {
+    /** Integer representing the cards suit:
+     *  0 -> Spades
+     *  1 -> Hearts
+     *  2 -> Clubs
+     *  3 -> Square
+     *  4 -> Joker
+     *
+     * @var int
+     */
     private int $suitValue;
+
+    /** Holds the value of the cards which also represents the rank:
+     *  1 => '1',
+     *  2 => '2',
+     *  3 => '3',
+     *  4 => '4',
+     *  5 => '5',
+     *  6 => '6',
+     *  7 => '7',
+     *  8 => '8',
+     *  9 => '9',
+     *  10 => '10',
+     *  11 => 'Knekt',
+     *  12 => 'Dam',
+     *  13 => 'Kung',
+     *  14 => 'Ess'
+     *
+     * @var int
+     */
     private int $rankValue;
 
+    /** Constructor for the card class.
+     * The class contains the suit, value and rank of the card.
+     * There are methods that can return the values in a number of formats
+     * including integers, arrays and unicode.
+     *
+     * @param int $suitValue
+     * @param int $rankValue
+     */
     public function __construct(int $suitValue, int $rankValue)
     {
         $this->suitValue = $suitValue;
         $this->rankValue = $rankValue;
     }
 
+    /** Gets the value representing the suit.
+     *
+     * @return int
+     */
     public function getSuitValue(): int
     {
         return $this->suitValue;
     }
 
+    /** Gets the value representing the rank.
+     *
+     * @return int
+     */
     public function getRankValue(): int
     {
         return $this->rankValue;
     }
 
+    /** Gets the string value representing the suit.
+     *
+     * @return string
+     */
     public function getSuit(): string
     {
         $suits = [
@@ -40,6 +88,10 @@ class Card
         return $suits[$this->suitValue];
     }
 
+    /** Gets the string value representing the rank.
+     *
+     * @return string
+     */
     public function getRank(): string
     {
         $ranks = [
@@ -62,11 +114,19 @@ class Card
         return $ranks[$this->rankValue];
     }
 
+    /** Gets the entire card as a string.
+     *
+     * @return string
+     */
     public function getCardAsString(): string
     {
         return $this->getSuit() . " " . $this->getRank();
     }
 
+    /** Returns the unicode representation of a given card.
+     *
+     * @return string
+     */
     public function getUnicode(): string
     {
         $unicode = [
@@ -129,6 +189,10 @@ class Card
         return $unicode[$card];
     }
 
+    /** Returns an array representing the card in a JSON-friendly format.
+     *
+     * @return array
+     */
     public function getJsonCard(): array
     {
         return [

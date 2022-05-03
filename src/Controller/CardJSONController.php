@@ -71,36 +71,29 @@ class CardJSONController extends AbstractController
     }
 
     /**
-     * @Route("card/api/deck/deal/{players}/{cards}", name="api-deal")
+     * @Route("card/api/deck/deal/{amountOfPlayers}/{amountOfCards}", name="api-deal")
      */
     public function apiDeal(
         SessionInterface $session,
-        int $players = 3,
-        int $cards = 4
+        int $amountOfPlayers = 3,
+        int $amountOfCards = 4
     ): Response {
         $deck = $session->get("deck") ?? new Deck();
-        $playerArr = [];
+        $arrayOfPlayers = [];
 
         if (!$deck->isShuffled()) {
             $deck->shuffle();
         }
 
         try {
-            for ($i = 1; $i <= $players; $i++) {
-                $player = new Player($i, $deck);
-                $player->dealHand($cards);
-                $playerArr[$i] = [
+            for ($id = 1; $id <= $amountOfPlayers; $id++) {
+                $player = new Player($id);
+                $hand = $deck->draw($amountOfCards);
+                $player->addCardsToHand($hand);
+                $arrayOfPlayers[$id] = [
                     "id" => $player->getPlayerId(),
                     "hand" => $player->getJsonHand()
                 ];
-/*                $player = new Player($i, $deck);
-                $playerId = $player->getPlayerId();
-                $player->dealHand($cards);
-                $playerHand = $player->getHand();
-                $playerArr[$i] = [
-                    "id" => $player->$playerId,
-                    "hand" => $player->$playerHand
-                ];*/
             }
         } catch (Exception $e) {
             echo $e;
@@ -109,7 +102,7 @@ class CardJSONController extends AbstractController
         $session->set("deck", $deck);
 
         $data = [
-            "players" => $playerArr,
+            "players" => $arrayOfPlayers,
             "cards left" => $deck->getLength()
         ];
 

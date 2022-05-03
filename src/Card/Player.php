@@ -8,63 +8,83 @@ namespace App\Card;
 
 use Exception;
 
-class Player implements PlayerInterface
+class Player
 {
+    /** Integer representing the ID of the player.
+     *
+     * @var int
+     */
     private int $playerId;
-    private HandInterface $hand;
 
-    /**
-     * Constructs a player.
+    /** Array representing the players hand.
+     *
+     * @var array<Card>
+     */
+    private array $cardsOnHand;
+
+    /** Constructor for the player class.
+     * The class contains the player id and an array representing
+     * a number of cards. It is possible to add, remove and get the cards
+     * from an object of the class.
      *
      * @param int $playerId
-     * @param DeckInterface $deck
      */
-    public function __construct(int $playerId, DeckInterface $deck)
+    public function __construct(int $playerId)
     {
         $this->playerId = $playerId;
-        $this->hand = new Hand($deck);
     }
 
-    /**
-     * Deals a new hand for the player
+    /** Adds cards to the array representing the player hand.
      *
-     * @throws Exception
+     * @param array<Card> $cards
      * @return void
      */
-    public function dealHand(int $cardAmount)
-    {
-        $this->hand->drawHand($cardAmount);
-    }
-
-    /**
-     * Gets player hand
-     *
-     * @return array<Card>
-     */
-    public function getHand(): array
-    {
-        return $this->hand->getHand();
-    }
-
-    /**
-     * @return array<array<string, string>>
-     */
-    public function getJsonHand(): array
-    {
-        $jsonHand = [];
-        foreach ($this->hand->getHand() as $card) {
-            $jsonHand[] = $card->getJsonCard();
+    public function addCardsToHand(array $cards) {
+        foreach ($cards as $card) {
+            $this->cardsOnHand[] = $card;
         }
-        return $jsonHand;
     }
 
-    /**
-     * Gets player id
+    /** Removes cards from the array representing the player hand.
+     *
+     * @param array $cards
+     * @return void
+     */
+    public function removeCards(array $cards) {
+        foreach ($cards as $card) {
+            unset($card, $this->cardsOnHand);
+        }
+    }
+
+    /** Gets the player ID.
      *
      * @return int
      */
     public function getPlayerId(): int
     {
         return $this->playerId;
+    }
+
+    /** Gets the array representing the cards on hand.
+     *
+     * @return array
+     */
+    public function getHand(): array
+    {
+        return $this->cardsOnHand;
+    }
+
+    /** Gets the array representing the cards on hand
+     * in a JSON-friendly format.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getJsonHand(): array
+    {
+        $jsonHand = [];
+        foreach ($this->cardsOnHand as $card) {
+            $jsonHand[] = $card->getJsonCard();
+        }
+        return $jsonHand;
     }
 }

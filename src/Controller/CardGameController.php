@@ -106,17 +106,18 @@ class CardGameController extends AbstractController
     }
 
     /**
-     * @Route("/card/deck/deal/{players}/{cards}", name="card-deal")
+     * @Route("/card/deck/deal/{amountOfPlayers}/{amountOfCards}", name="card-deal")
+     * @throws Exception
      */
     public function deal(
         Request $request,
         SessionInterface $session,
-        int $players = 2,
-        int $cards = 5
+        int $amountOfPlayers = 2,
+        int $amountOfCards = 5
     ): Response {
         $deck = $session->get("deck") ?? new Deck();
         $new = $request->request->get('new');
-        $playerArr = [];
+        $arrayOfPlayers = [];
 
         if ($new) {
             $deck = new Deck();
@@ -127,10 +128,11 @@ class CardGameController extends AbstractController
         }
 
         try {
-            for ($i = 1; $i <= $players; $i++) {
-                $player = new Player($i, $deck);
-                $player->dealHand($cards);
-                $playerArr[$i] = [
+            for ($id = 1; $id <= $amountOfPlayers; $id++) {
+                $player = new Player($id);
+                $hand = $deck->draw($amountOfCards);
+                $player->addCardsToHand($hand);
+                $arrayOfPlayers[$id] = [
                     "id" => $player->getPlayerId(),
                     "hand" => $player->getHand()
                 ];
@@ -143,7 +145,7 @@ class CardGameController extends AbstractController
 
         $data = [
             "title" => "Deal",
-            "players" => $playerArr,
+            "players" => $arrayOfPlayers,
             "amountLeft" => $deck->getLength()
         ];
 

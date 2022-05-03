@@ -87,17 +87,10 @@ body {
 }
 
 .card {
-/*    margin: 0.5em;*/
-/*    min-width: 5em;
-    max-width: 5em;
-    min-height: 7em;
-    max-height: 7em;
-    border: 1px solid black;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-/*    border-radius: 5px;*/
     font-size: 7em;
 }
 

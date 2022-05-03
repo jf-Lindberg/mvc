@@ -6,39 +6,21 @@ use Exception;
 
 class Game
 {
-    private DeckInterface $deck;
-    private BankInterface $bank;
-    private PlayerInterface $player;
+    private Deck $deck;
+    private Player $player;
 
-    public function __construct(DeckInterface $deck, BankInteface $bank, PlayerInterface $player)
+    public function __construct(Deck $deck, Player $player)
     {
         $this->deck = $deck;
-        $this->bank = $bank;
         $this->player = $player;
     }
 
     /**
      * @throws Exception
      */
-    public function dealPlayer ()
+    public function dealPlayer (int $cardsToDeal = 1)
     {
-        $hand = new Hand($this->deck);
-        $hand->drawHand(1);
-        $this->player->setHand($hand);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function dealBank ()
-    {
-        $hand = new Hand($this->deck);
-        $hand->drawHand(1);
-        $this->bank->setHand($hand);
-    }
-
-    public function hit ()
-    {
-
+        $hand = $this->deck->draw($cardsToDeal);
+        $this->player->addCardsToHand($hand);
     }
 }
