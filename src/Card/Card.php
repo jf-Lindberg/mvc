@@ -134,6 +134,7 @@ class Card
         return [
             "suit" => $this->getSuit(),
             "rank" => $this->getRank(),
+            "value" => $this->getRankValue(),
             "unicode" => $this->getUnicode()
         ];
     }

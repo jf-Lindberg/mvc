@@ -25,16 +25,6 @@ class Deck implements DeckInterface
      */
     public function createDeck(): void
     {
-//        $this->deck = [];
-//        $ranks = ['Joker', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Knekt', 'Dam', 'Kung', 'Ess'];
-//        $suits = ['Hjärter', 'Spader', 'Ruter', 'Klöver'];
-//        for ($i = 0; $i < 4; $i++) {
-//            for ($j = 1; $j < 14; $j++) {
-//                $card = new Card($suits[$i], $ranks[$j]);
-//                $this->deck[] = $card;
-//            }
-//        }
-
         for ($suit = 0; $suit <= 3; $suit++) {
             for ($rank = 2; $rank <= 14; $rank++) {
                 $this->deck[$this->size] = new Card($suit, $rank);
