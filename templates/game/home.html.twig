@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Game</h3>
+        <a href="{{ path('game-play') }}">Play the game</a><br/>
+        <a href="{{ path('game-docs') }}">Read the documentation</a><br/>
+    </div>
+{% endblock %}

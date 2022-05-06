@@ -1,4 +1,4 @@
-Dokumentation för spelet 21 - vilka klasser behövs?
+### Spelet 21 - klasser
 
 * Game
   * Sköter all logik som rör spelet.

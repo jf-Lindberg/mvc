@@ -1,4 +1,4 @@
-# Pseudokod 21
+### Pseudokod spelet 21
 Context: Player has stayed. Bank does not know about the players hand.
 
 ```
@@ -10,7 +10,7 @@ WHILE continue is true
     IF total > 21
         BREAK game loop: player wins
     CASE    total   ACTION
-            <17     hit (continue = true)
-            ⩾17     stay (continue = false)
+            <17     hit (SET continue to true)
+            ⩾17     stay (SET continue to false)
 ENDWHILE
 ```
