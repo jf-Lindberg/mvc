@@ -76,7 +76,11 @@ class GameController extends AbstractController
             $deckObject->shuffle();
         }
 
-        if ($hitRequest || $newGameRequest || !$session->has("game")) {
+        if ($gameObject->isRoundFinished()) {
+            $this->addFlash('info', 'Spelet är över. Klicka "Nytt spel" för att spela igen.');
+        }
+
+        if (($hitRequest && !$gameObject->isRoundFinished()) || $newGameRequest || !$session->has("game")) {
             try {
                 $gameObject->hitPlayer();
             } catch (Exception $e) {
@@ -89,7 +93,7 @@ class GameController extends AbstractController
             "hand" => [],
             "points" => 0
         ];
-        if ($stayRequest) {
+        if ($stayRequest && !$gameObject->isRoundFinished()) {
             try {
                 while ($bankObject->decidesToHit()) {
                     $gameObject->hitBank();
@@ -99,9 +103,10 @@ class GameController extends AbstractController
                 $this->addFlash('info', 'Banken drog över 21. Du har vunnit.');
                 $session->remove("deck");
             }
-            $bankData["hand"] = $bankObject->getHand();
-            $bankData["points"] = $bankObject->getHandValue();
         }
+
+        $bankData["hand"] = $bankObject->getHand();
+        $bankData["points"] = $bankObject->getHandValue();
 
         $playerData = [
             "hand" => $playerObject->getHand(),
@@ -119,7 +124,6 @@ class GameController extends AbstractController
                         "Banken drog " . $bankData["points"] .
                         ". Du drog " . $playerData["points"] . ". Du förlorade!"));
             }
-            $session->remove("deck");
         }
 
         $session->set("game", $gameObject);
