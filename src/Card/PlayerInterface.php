@@ -6,13 +6,19 @@ use Exception;
 
 interface PlayerInterface
 {
-    /**
-     * Deals a new hand for the player
+    /** Adds cards to the array representing the player hand.
      *
-     * @throws Exception
+     * @param array<Card> $cards
      * @return void
      */
-    public function dealHand(int $cardAmount);
+    public function addCardsToHand(array $cards);
+
+    /** Removes cards from the array representing the player hand.
+     *
+     * @param array $cards
+     * @return void
+     */
+    public function removeCards(array $cards);
 
     /**
      * Gets player hand
@@ -22,14 +28,20 @@ interface PlayerInterface
     public function getHand(): array;
 
     /**
-     * @return array<array<string, string>>
+     * @return int
+     */
+    public function getHandValue(): int;
+
+    /** Gets the array representing the cards on hand
+     * in a JSON-friendly format.
+     *
+     * @return array<int, array<string, mixed>>
      */
     public function getJsonHand(): array;
 
-    /**
-     * Gets player id
+    /** Gets the player ID.
      *
      * @return int
      */
-    public function getPlayerId(): int;
+    public function getIdent(): int;
 }

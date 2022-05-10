@@ -8,7 +8,7 @@ namespace App\Card;
 
 use Exception;
 
-class Player
+class Player implements PlayerInterface
 {
     /** Integer representing the ID of the player.
      *
@@ -54,7 +54,8 @@ class Player
      * @param array $cards
      * @return void
      */
-    public function removeCards(array $cards) {
+    public function removeCards(array $cards)
+    {
         foreach ($cards as $card) {
             unset($card, $this->cardsOnHand);
         }

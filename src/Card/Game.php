@@ -4,7 +4,7 @@ namespace App\Card;
 
 use Exception;
 
-class Game
+class Game implements GameInterface
 {
     private Deck $deck;
     private Bank $bank;
