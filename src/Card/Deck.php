@@ -51,7 +51,7 @@ class Deck implements DeckInterface
 
     /** Returns an array of card objects representing the deck.
      *
-     * @return array
+     * @return array<Card>
      */
     public function getDeck(): array
     {
@@ -60,7 +60,7 @@ class Deck implements DeckInterface
 
     /** Returns an array of arrays representing the cards in the deck.
      *
-     * @return array
+     * @return array<array<string, string>>
      */
     public function getJsonDeck(): array
     {
@@ -76,7 +76,7 @@ class Deck implements DeckInterface
      * length of the deck.
      *
      * @param int $countOfCards
-     * @return array
+     * @return array<Card>
      * @throws Exception
      */
     public function draw(int $countOfCards): array
@@ -99,7 +99,7 @@ class Deck implements DeckInterface
      */
     public function shuffle(): void
     {
-        shuffle( $this->deck);
+        shuffle($this->deck);
         $this->isShuffled = true;
     }
 
@@ -119,5 +119,11 @@ class Deck implements DeckInterface
     public function getLength(): int
     {
         return count($this->deck);
+    }
+
+    public function reset(): void
+    {
+        $this->__construct();
+        $this->shuffle();
     }
 }

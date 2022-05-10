@@ -20,16 +20,33 @@ class Game implements GameInterface
     }
 
     /**
+     * @throws Exception
+     */
+    public function newRound(): void
+    {
+        $this->isGameDone = false;
+        $this->bank->setStays(false);
+        $this->player->setStays(false);
+        $this->deck->reset();
+        $this->player->resetCards();
+        $this->bank->resetCards();
+        $this->hitPlayer();
+    }
+
+    /**
      * @param int $cardsToDeal
      * @throws Exception
      */
-    public function hitPlayer (int $cardsToDeal = 1)
+    public function hitPlayer(int $cardsToDeal = 1): void
     {
-        $hand = $this->deck->draw($cardsToDeal);
-        $this->player->addCardsToHand($hand);
-        if ($this->player->getHandValue() > 21) {
-            $this->isGameDone = true;
-            throw new Exception("Over 21");
+        if (!$this->player->getStays()) {
+            $hand = $this->deck->draw($cardsToDeal);
+            $this->player->addCardsToHand($hand);
+            if ($this->player->getHandValue() > 21) {
+                $this->player->setStays(false);
+                $this->isGameDone = true;
+                throw new Exception("Over 21");
+            }
         }
     }
 
@@ -37,7 +54,7 @@ class Game implements GameInterface
      * @param int $cardsToDeal
      * @throws Exception
      */
-    public function hitBank (int $cardsToDeal = 1)
+    public function hitBank(int $cardsToDeal = 1): void
     {
         $hand = $this->deck->draw($cardsToDeal);
         $this->bank->addCardsToHand($hand);
@@ -47,16 +64,47 @@ class Game implements GameInterface
         }
     }
 
-    public function playerWins (): bool
+    /**
+     * @throws Exception
+     */
+    public function playBank(): void
     {
-        $playerPoints = $this->player->getHandValue();
-        $bankPoints = $this->bank->getHandValue();
-        $this->isGameDone = true;
-        return $playerPoints > $bankPoints;
+        $this->player->setStays(true);
+        if (!$this->isRoundFinished()) {
+            while ($this->bank->decidesToHit()) {
+                $this->hitBank();
+            }
+            $this->bank->setStays(true);
+            $this->isGameDone = true;
+        }
     }
 
-    public function isRoundFinished (): bool
+    /**
+     * @throws Exception
+     */
+    public function playerWins(): bool
+    {
+        if ($this->bank->getStays()) {
+            $playerPoints = $this->player->getHandValue();
+            $bankPoints = $this->bank->getHandValue();
+            $this->isGameDone = true;
+            return $playerPoints > $bankPoints;
+        }
+        throw new Exception("Bank didn't stay");
+    }
+
+    public function isRoundFinished(): bool
     {
         return $this->isGameDone;
+    }
+
+    public function getBank(): Bank
+    {
+        return $this->bank;
+    }
+
+    public function getPlayer(): Player
+    {
+        return $this->player;
     }
 }

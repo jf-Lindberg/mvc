@@ -11,8 +11,7 @@ class Bank extends Player
      */
     public function decidesToHit(): bool
     {
-        if ($this->getHandValue() >= 17)
-        {
+        if ($this->getHandValue() >= 17) {
             return false;
         }
         return true;

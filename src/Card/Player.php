@@ -22,6 +22,11 @@ class Player implements PlayerInterface
      */
     private array $cardsOnHand;
 
+    /**
+     * @var bool
+     */
+    private bool $stays;
+
     /** Constructor for the player class.
      * The class contains the player id and an array representing
      * a number of cards. It is possible to add, remove and get the cards
@@ -31,8 +36,8 @@ class Player implements PlayerInterface
      */
     public function __construct(int $playerId = 0)
     {
+        $this->stays = false;
         $this->ident = $playerId;
-        $this->score = 0;
         $this->cardsOnHand = [];
     }
 
@@ -45,13 +50,12 @@ class Player implements PlayerInterface
     {
         foreach ($cards as $card) {
             $this->cardsOnHand[] = $card;
-            $this->score += $card->getRankValue();
         }
     }
 
     /** Removes cards from the array representing the player hand.
      *
-     * @param array $cards
+     * @param array<Card> $cards
      * @return void
      */
     public function removeCards(array $cards)
@@ -59,6 +63,11 @@ class Player implements PlayerInterface
         foreach ($cards as $card) {
             unset($card, $this->cardsOnHand);
         }
+    }
+
+    public function resetCards(): void
+    {
+        $this->cardsOnHand = [];
     }
 
     /** Gets the player ID.
@@ -72,7 +81,7 @@ class Player implements PlayerInterface
 
     /** Gets the array representing the cards on hand.
      *
-     * @return array
+     * @return array<Card>
      */
     public function getHand(): array
     {
@@ -84,12 +93,9 @@ class Player implements PlayerInterface
      */
     public function getHandValue(): int
     {
-        if (!$this->cardsOnHand) {
-            return 0;
-        }
-        return array_reduce($this->cardsOnHand, function($carry, $card) {
+        return array_reduce($this->cardsOnHand, function ($carry, $card) {
             return $carry + $card->getRankValue();
-        });
+        }, 0);
     }
 
     /** Gets the array representing the cards on hand
@@ -104,5 +110,15 @@ class Player implements PlayerInterface
             $jsonHand[] = $card->getJsonCard();
         }
         return $jsonHand;
+    }
+
+    public function setStays(bool $stayOrNot): void
+    {
+        $this->stays = $stayOrNot;
+    }
+
+    public function getStays(): bool
+    {
+        return $this->stays;
     }
 }
