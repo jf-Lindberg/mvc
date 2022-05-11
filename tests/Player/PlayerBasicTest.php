@@ -39,14 +39,17 @@ class PlayerBasicTest extends TestCase
         $this->assertEquals($exp, $res);
     }
 
+    /**
+     * @return void
+     */
     public function testAddingHand()
     {
         $player = new Player(1);
         $this->assertInstanceOf("\App\Card\Player", $player);
 
-        $cardOne = new Card(0, 5);
-        $cardTwo = new Card(1, 12);
-        $cardThree = new Card(3, 14);
+        $cardOne = $this->createMock('App\Card\Card');
+        $cardTwo = $this->createMock('App\Card\Card');
+        $cardThree = $this->createMock('App\Card\Card');
         $cardArray = [$cardOne, $cardTwo, $cardThree];
 
         $player->addCardsToHand($cardArray);
@@ -54,5 +57,93 @@ class PlayerBasicTest extends TestCase
         $res = $player->getHand();
         $exp = $cardArray;
         $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * @return void
+     */
+    public function testResetCards()
+    {
+        $player = new Player(1);
+        $this->assertInstanceOf("\App\Card\Player", $player);
+
+        $cardOne = $this->createMock('App\Card\Card');
+        $cardTwo = $this->createMock('App\Card\Card');
+        $cardThree = $this->createMock('App\Card\Card');
+        $cardArray = [$cardOne, $cardTwo, $cardThree];
+
+        $player->addCardsToHand($cardArray);
+
+        $player->resetCards();
+        $res = $player->getHand();
+        $notExp = $cardArray;
+        $len = count($res);
+        $this->assertNotEquals($notExp, $res);
+        $this->assertTrue($len === 0);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetIdent()
+    {
+        $player = new Player(5);
+        $this->assertInstanceOf("\App\Card\Player", $player);
+
+        $res = $player->getIdent();
+        $exp = 5;
+        $this->assertEquals($exp, $res);
+        $type = gettype($res);
+        $exp = "integer";
+        $this->assertEquals($exp, $type);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetHandValue()
+    {
+        $player = new Player(1, 17);
+        $this->assertInstanceOf("\App\Card\Player", $player);
+
+        $res = $player->getHandValue();
+        $exp = 17;
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetJson()
+    {
+        $player = new Player(1);
+        $this->assertInstanceOf("\App\Card\Player", $player);
+
+        $cardOne = $this->createMock('App\Card\Card');
+        $cardTwo = $this->createMock('App\Card\Card');
+        $cardThree = $this->createMock('App\Card\Card');
+        $cardArray = [$cardOne, $cardTwo, $cardThree];
+
+        $player->addCardsToHand($cardArray);
+
+        $res = $player->getJsonHand();
+        $this->assertIsArray($res);
+        $this->assertIsArray($res[1]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testSetStays()
+    {
+        $player = new Player(1);
+        $this->assertInstanceOf("\App\Card\Player", $player);
+
+        $res = $player->isSetToStay();
+        $this->assertFalse($res);
+
+        $player->setStays(true);
+        $res = $player->isSetToStay();
+        $this->assertTrue($res);
     }
 }

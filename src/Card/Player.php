@@ -27,18 +27,25 @@ class Player implements PlayerInterface
      */
     private bool $stays;
 
+    /**
+     * @var int
+     */
+    private int $score;
+
     /** Constructor for the player class.
      * The class contains the player id and an array representing
      * a number of cards. It is possible to add, remove and get the cards
      * from an object of the class.
      *
      * @param int $playerId
+     * @param int $score
      */
-    public function __construct(int $playerId = 0)
+    public function __construct(int $playerId = 0, int $score = 0)
     {
         $this->stays = false;
         $this->ident = $playerId;
         $this->cardsOnHand = [];
+        $this->score = $score;
     }
 
     /** Adds cards to the array representing the player hand.
@@ -50,12 +57,14 @@ class Player implements PlayerInterface
     {
         foreach ($cards as $card) {
             $this->cardsOnHand[] = $card;
+            $this->score += $card->getRankValue();
         }
     }
 
     public function resetCards(): void
     {
         $this->cardsOnHand = [];
+        $this->score = 0;
     }
 
     /** Gets the player ID.
@@ -81,9 +90,10 @@ class Player implements PlayerInterface
      */
     public function getHandValue(): int
     {
-        return array_reduce($this->cardsOnHand, function ($carry, $card) {
-            return $carry + $card->getRankValue();
-        }, 0);
+        return $this->score;
+//        return array_reduce($this->cardsOnHand, function ($carry, $card) {
+//            return $carry + $card->getRankValue();
+//        }, 0);
     }
 
     /** Gets the array representing the cards on hand
@@ -95,7 +105,7 @@ class Player implements PlayerInterface
     {
         $jsonHand = [];
         foreach ($this->cardsOnHand as $card) {
-            $jsonHand[] = $card->getJsonCard();
+            $jsonHand[] = $card->jsonify();
         }
         return $jsonHand;
     }

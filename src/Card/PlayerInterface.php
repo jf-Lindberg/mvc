@@ -13,13 +13,6 @@ interface PlayerInterface
      */
     public function addCardsToHand(array $cards);
 
-    /** Removes cards from the array representing the player hand.
-     *
-     * @param array<Card> $cards
-     * @return void
-     */
-    public function removeCards(array $cards);
-
     /**
      * Gets player hand
      *
