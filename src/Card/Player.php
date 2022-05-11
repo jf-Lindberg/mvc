@@ -53,18 +53,6 @@ class Player implements PlayerInterface
         }
     }
 
-    /** Removes cards from the array representing the player hand.
-     *
-     * @param array<Card> $cards
-     * @return void
-     */
-    public function removeCards(array $cards)
-    {
-        foreach ($cards as $card) {
-            unset($card, $this->cardsOnHand);
-        }
-    }
-
     public function resetCards(): void
     {
         $this->cardsOnHand = [];
