@@ -27,12 +27,12 @@ class Deck implements DeckInterface
      * and get the entire deck.
      *
      */
-    public function __construct(int $size = 0, array $deck = [], bool $isShuffled = false)
+    public function __construct()
     {
-        $this->size = $size;
-        $this->deck = $deck;
-        $this->isShuffled = $isShuffled;
-        $this->createDeck();
+        $this->size = 0;
+        $this->deck = [];
+        $this->isShuffled = false;
+        $this->addCardsToDeck();
     }
 
     /** Adds card objects to the array representing the deck.
@@ -41,7 +41,7 @@ class Deck implements DeckInterface
      * @param int $ranks
      * @return void
      */
-    public function createDeck(int $suits = 4, int $ranks = 13): void
+    public function addCardsToDeck(int $suits = 4, int $ranks = 13): void
     {
         for ($suit = 0; $suit < $suits; $suit++) {
             for ($rank = 2; $rank < $ranks+2; $rank++) {
@@ -121,6 +121,11 @@ class Deck implements DeckInterface
     public function getLength(): int
     {
         return count($this->deck);
+    }
+
+    public function removeAllCards(): void
+    {
+        $this->deck = [];
     }
 
     public function reset(): void

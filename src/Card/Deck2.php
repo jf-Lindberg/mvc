@@ -11,9 +11,9 @@ class Deck2 extends Deck implements DeckInterface
      * @param int $ranks
      * @return void
      */
-    public function createDeck(int $suits = 4, int $ranks = 13): void
+    public function addCardsToDeck(int $suits = 4, int $ranks = 13): void
     {
-        parent::createDeck();
+        parent::addCardsToDeck();
         for ($i = 0; $i < 2; $i++) {
             $this->deck[$this->size] = new Card(4, 1);
             $this->size++;

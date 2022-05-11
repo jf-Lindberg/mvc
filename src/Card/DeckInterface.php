@@ -11,7 +11,7 @@ interface DeckInterface
      *
      * @return void
      */
-    public function createDeck(): void;
+    public function addCardsToDeck(): void;
 
     /**
      * Returns an array of cards representing the deck.
