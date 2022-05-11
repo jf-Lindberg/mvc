@@ -137,10 +137,10 @@ class Deck implements DeckInterface
     /**
      * @throws DeckAlreadyExistsException
      */
-    public function reset(): void
+    public function reset(int $size = 0, array $deck = []): void
     {
-        $this->size = 0;
-        $this->deck = [];
+        $this->size = $size;
+        $this->deck = $deck;
         $this->isShuffled = false;
         $this->addCardsToDeck();
         $this->shuffle();

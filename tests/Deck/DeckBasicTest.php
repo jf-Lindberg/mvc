@@ -91,11 +91,71 @@ class DeckBasicTest extends TestCase
         $this->assertInstanceOf("\App\Card\Deck", $deck);
 
         $res = $deck->draw();
+        $this->assertIsArray($res);
+
         $len = count($res);
         $exp = 1;
         $this->assertEquals($exp, $len);
 
         $res = $res[0];
         $this->assertInstanceOf("\App\Card\Card", $res);
+
+        $res = $deck->getLength();
+        $exp = 51;
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * @throws NotEnoughCardsException
+     */
+    public function testDrawWithArgument()
+    {
+        $deck = new Deck();
+        $this->assertInstanceOf("\App\Card\Deck", $deck);
+
+        $res = $deck->draw(12);
+        $this->assertIsArray($res);
+
+        $len = count($res);
+        $exp = 12;
+        $this->assertEquals($exp, $len);
+
+        $res = $res[7];
+        $this->assertInstanceOf("\App\Card\Card", $res);
+
+        $res = $deck->getLength();
+        $exp = 40;
+        $this->assertEquals($exp, $res);
+    }
+
+    public function testShuffle()
+    {
+        $deck = new Deck();
+        $this->assertInstanceOf("\App\Card\Deck", $deck);
+
+        $deck->shuffle();
+        $res = $deck->isShuffled();
+        $this->assertTrue($res);
+    }
+
+    /**
+     * @throws NotEnoughCardsException
+     * @throws DeckAlreadyExistsException
+     */
+    public function testReset()
+    {
+        $deck = new Deck();
+        $this->assertInstanceOf("\App\Card\Deck", $deck);
+
+        $deck->draw(52);
+        $res = $deck->get();
+        $this->assertEmpty($res);
+
+        $deck->reset();
+        $res = $deck->get();
+        $this->assertNotEmpty($res);
+
+        $res = $deck->isShuffled();
+        $this->assertTrue($res);
     }
 }
