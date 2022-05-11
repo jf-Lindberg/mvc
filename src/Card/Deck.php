@@ -84,9 +84,9 @@ class Deck implements DeckInterface
      *
      * @param int $countOfCards
      * @return array<Card>
-     * @throws Exception
+     * @throws NotEnoughCardsException
      */
-    public function draw(int $countOfCards): array
+    public function draw(int $countOfCards = 1): array
     {
         $drawnCards = [];
         if ($this->getLength() - $countOfCards < 0) {

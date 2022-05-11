@@ -81,4 +81,21 @@ class DeckBasicTest extends TestCase
         ];
         $this->assertEquals($exp, $res);
     }
+
+    /**
+     * @throws NotEnoughCardsException
+     */
+    public function testDrawNoArguments()
+    {
+        $deck = new Deck();
+        $this->assertInstanceOf("\App\Card\Deck", $deck);
+
+        $res = $deck->draw();
+        $len = count($res);
+        $exp = 1;
+        $this->assertEquals($exp, $len);
+
+        $res = $res[0];
+        $this->assertInstanceOf("\App\Card\Card", $res);
+    }
 }
