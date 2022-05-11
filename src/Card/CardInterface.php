@@ -9,20 +9,20 @@ interface CardInterface
      *
      * @return array<string, mixed>
      */
-    public function getJsonCard(): array;
+    public function jsonify(): array;
 
     /**
      * @return string
      */
-    public function getRank(): string;
+    public function getRankAsString(): string;
 
     /**
      * @return string
      */
-    public function getSuit(): string;
+    public function getSuitAsString(): string;
 
     /**
      * @return string
      */
-    public function getUnicode(): string;
+    public function unicode(): string;
 }

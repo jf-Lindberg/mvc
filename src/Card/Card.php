@@ -47,10 +47,34 @@ class Card implements CardInterface
      * @param int $suitValue
      * @param int $rankValue
      */
-    public function __construct(int $suitValue, int $rankValue)
+    public function __construct(int $suitValue = -1, int $rankValue = -1)
     {
         $this->suitValue = $suitValue;
         $this->rankValue = $rankValue;
+        if ($this->suitValue === -1) {
+            $this->randomizeSuit();
+        }
+        if ($this->rankValue === -1) {
+            $this->randomizeRank();
+        }
+    }
+
+    /** Generates a random suit.
+     *
+     * @return void
+     */
+    public function randomizeSuit()
+    {
+        $this->suitValue = rand(0, 4);
+    }
+
+    /** Generates a random rank.
+     *
+     * @return void
+     */
+    public function randomizeRank()
+    {
+        $this->rankValue = rand(1, 14);
     }
 
     /** Gets the value representing the suit.
@@ -75,7 +99,7 @@ class Card implements CardInterface
      *
      * @return string
      */
-    public function getSuit(): string
+    public function getSuitAsString(): string
     {
         $suits = [
             0 => 'Spader',
@@ -92,7 +116,7 @@ class Card implements CardInterface
      *
      * @return string
      */
-    public function getRank(): string
+    public function getRankAsString(): string
     {
         $ranks = [
             1 => '1',
@@ -118,16 +142,16 @@ class Card implements CardInterface
      *
      * @return string
      */
-    public function getCardAsString(): string
+    public function stringify(): string
     {
-        return $this->getSuit() . " " . $this->getRank();
+        return $this->getSuitAsString() . " " . $this->getRankAsString();
     }
 
     /** Returns the unicode representation of a given card.
      *
      * @return string
      */
-    public function getUnicode(): string
+    public function unicode(): string
     {
         $unicode = [
             'Spader Ess' => '&#127137;',
@@ -185,7 +209,7 @@ class Card implements CardInterface
             'Joker 1' => '&#127199;'
         ];
 
-        $card = $this->getCardAsString();
+        $card = $this->stringify();
         return $unicode[$card];
     }
 
@@ -193,13 +217,13 @@ class Card implements CardInterface
      *
      * @return array<string, mixed>
      */
-    public function getJsonCard(): array
+    public function jsonify(): array
     {
         return [
-            "suit" => $this->getSuit(),
-            "rank" => $this->getRank(),
+            "suit" => $this->getSuitAsString(),
+            "rank" => $this->getRankAsString(),
             "value" => $this->getRankValue(),
-            "unicode" => $this->getUnicode()
+            "unicode" => $this->unicode()
         ];
     }
 }

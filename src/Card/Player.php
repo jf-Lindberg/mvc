@@ -112,12 +112,19 @@ class Player implements PlayerInterface
         return $jsonHand;
     }
 
+    /**
+     * @param bool $stayOrNot
+     * @return void
+     */
     public function setStays(bool $stayOrNot): void
     {
         $this->stays = $stayOrNot;
     }
 
-    public function getStays(): bool
+    /**
+     * @return bool
+     */
+    public function isSetToStay(): bool
     {
         return $this->stays;
     }

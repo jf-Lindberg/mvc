@@ -39,7 +39,7 @@ class Game implements GameInterface
      */
     public function hitPlayer(int $cardsToDeal = 1): void
     {
-        if (!$this->player->getStays()) {
+        if (!$this->player->isSetToStay()) {
             $hand = $this->deck->draw($cardsToDeal);
             $this->player->addCardsToHand($hand);
             if ($this->player->getHandValue() > 21) {
@@ -84,7 +84,7 @@ class Game implements GameInterface
      */
     public function playerWins(): bool
     {
-        if ($this->bank->getStays()) {
+        if ($this->bank->isSetToStay()) {
             $playerPoints = $this->player->getHandValue();
             $bankPoints = $this->bank->getHandValue();
             $this->isGameDone = true;
