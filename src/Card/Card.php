@@ -150,6 +150,7 @@ class Card implements CardInterface
     /** Gets the entire card as a string.
      *
      * @return string
+     * @throws CardNotFoundException
      */
     public function stringify(): string
     {
@@ -159,6 +160,7 @@ class Card implements CardInterface
     /** Returns the unicode representation of a given card.
      *
      * @return string
+     * @throws CardNotFoundException
      */
     public function unicode(): string
     {
@@ -225,6 +227,7 @@ class Card implements CardInterface
     /** Returns an array representing the card in a JSON-friendly format.
      *
      * @return array<string, mixed>
+     * @throws CardNotFoundException
      */
     public function jsonify(): array
     {

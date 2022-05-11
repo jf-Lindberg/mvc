@@ -2,7 +2,6 @@
 
 namespace App\Card;
 
-use App\Card\Card;
 use PHPUnit\Framework\TestCase;
 
 class CardBasicTest extends TestCase
@@ -59,6 +58,7 @@ class CardBasicTest extends TestCase
     /** Runs test for method that returns spring representation of the suit.
      *
      * @return void
+     * @throws CardNotFoundException
      */
     public function testGetSuitAsString()
     {
@@ -74,6 +74,7 @@ class CardBasicTest extends TestCase
     /** Runs test for method that returns spring representation of the rank.
      *
      * @return void
+     * @throws CardNotFoundException
      */
     public function testGetRankAsString()
     {
@@ -89,6 +90,7 @@ class CardBasicTest extends TestCase
     /** Runs test for method that returns spring representation of the whole card.
      *
      * @return void
+     * @throws CardNotFoundException
      */
     public function testGetAsString()
     {
@@ -104,6 +106,7 @@ class CardBasicTest extends TestCase
     /** Runs test for method that returns spring representation of the whole card.
      *
      * @return void
+     * @throws CardNotFoundException
      */
     public function testUnicode()
     {
@@ -116,6 +119,11 @@ class CardBasicTest extends TestCase
         $this->assertEquals($exp, $res);
     }
 
+    /** Runs test for method that returns json representation of the whole card.
+     *
+     * @return void
+     * @throws CardNotFoundException
+     */
     public function testJson()
     {
         $card = new Card(3, 11);

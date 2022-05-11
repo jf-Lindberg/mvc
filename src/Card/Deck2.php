@@ -7,9 +7,11 @@ class Deck2 extends Deck implements DeckInterface
     /**
      * Adds two jokers compared with normal deck.
      *
+     * @param int $suits
+     * @param int $ranks
      * @return void
      */
-    public function createDeck(): void
+    public function createDeck(int $suits = 4, int $ranks = 13): void
     {
         parent::createDeck();
         for ($i = 0; $i < 2; $i++) {
