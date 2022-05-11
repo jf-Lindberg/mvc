@@ -35,7 +35,7 @@ class CardGameController extends AbstractController
         $session->set("deck", $deck);
         $data = [
             "title" => "Deck",
-            "deck" => $deck->getDeck()
+            "deck" => $deck->get()
         ];
         return $this->render('card/deck.html.twig', $data);
     }
@@ -50,7 +50,7 @@ class CardGameController extends AbstractController
         $session->set("deck", $deck);
         $data = [
             "title" => "Deck",
-            "deck" => $deck->getDeck()
+            "deck" => $deck->get()
         ];
         return $this->render('card/deck.html.twig', $data);
     }
@@ -65,7 +65,7 @@ class CardGameController extends AbstractController
         $deck->shuffle();
         $data = [
             "title" => "Shuffle",
-            "deck" => $deck->getDeck()
+            "deck" => $deck->get()
         ];
         return $this->render('card/deck.html.twig', $data);
     }

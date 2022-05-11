@@ -26,6 +26,7 @@ class Deck implements DeckInterface
      * a deck of cards. It is possible to shuffle, draw cards
      * and get the entire deck.
      *
+     * @throws DeckAlreadyExistsException
      */
     public function __construct()
     {
@@ -40,9 +41,13 @@ class Deck implements DeckInterface
      * @param int $suits
      * @param int $ranks
      * @return void
+     * @throws DeckAlreadyExistsException
      */
     public function addCardsToDeck(int $suits = 4, int $ranks = 13): void
     {
+        if ($this->size > 0) {
+            throw new DeckAlreadyExistsException("That deck already contains cards.");
+        }
         for ($suit = 0; $suit < $suits; $suit++) {
             for ($rank = 2; $rank < $ranks+2; $rank++) {
                 $this->deck[$this->size] = new Card($suit, $rank);
@@ -55,7 +60,7 @@ class Deck implements DeckInterface
      *
      * @return array<Card>
      */
-    public function getDeck(): array
+    public function get(): array
     {
         return $this->deck;
     }
@@ -64,11 +69,11 @@ class Deck implements DeckInterface
      *
      * @return array<array<string, string>>
      */
-    public function getJsonDeck(): array
+    public function jsonify(): array
     {
         $res = [];
         foreach ($this->deck as $card) {
-            $res[] = $card->getJsonCard();
+            $res[] = $card->jsonify();
         }
         return $res;
     }
@@ -85,7 +90,7 @@ class Deck implements DeckInterface
     {
         $drawnCards = [];
         if ($this->getLength() - $countOfCards < 0) {
-            throw new Exception("Not enough cards");
+            throw new NotEnoughCardsException("Not enough cards");
         }
         for ($i = 0; $i < $countOfCards; $i++) {
             $card = array_splice($this->deck, ($this->getLength() - 1), 1);
@@ -125,12 +130,19 @@ class Deck implements DeckInterface
 
     public function removeAllCards(): void
     {
+        $this->size = 0;
         $this->deck = [];
     }
 
+    /**
+     * @throws DeckAlreadyExistsException
+     */
     public function reset(): void
     {
-        $this->__construct();
+        $this->size = 0;
+        $this->deck = [];
+        $this->isShuffled = false;
+        $this->addCardsToDeck();
         $this->shuffle();
     }
 }

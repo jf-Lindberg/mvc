@@ -21,7 +21,7 @@ class CardJSONController extends AbstractController
     ): Response {
         $deck = new Deck();
         $data = [
-            "deck" => $deck->getJsonDeck()
+            "deck" => $deck->jsonify()
         ];
         $session->set("deck", $deck);
 
@@ -36,7 +36,7 @@ class CardJSONController extends AbstractController
         $deck = new Deck();
         $deck->shuffle();
         $data = [
-            "deck" => $deck->getJsonDeck()
+            "deck" => $deck->jsonify()
         ];
         return new JsonResponse($data);
     }

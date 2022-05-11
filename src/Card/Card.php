@@ -120,6 +120,7 @@ class Card implements CardInterface
     /** Gets the string value representing the rank.
      *
      * @return string
+     * @throws CardNotFoundException
      */
     public function getRankAsString(): string
     {

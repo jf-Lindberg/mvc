@@ -18,13 +18,13 @@ interface DeckInterface
      *
      * @return array<CardInterface>
      */
-    public function getDeck(): array;
+    public function get(): array;
 
     /** Returns array of arrays consisting of card values
      *
      * @return array<array<string, string>>
      */
-    public function getJsonDeck(): array;
+    public function jsonify(): array;
 
     /**
      * @param int $countOfCards
