@@ -98,9 +98,14 @@ class Card implements CardInterface
     /** Gets the string value representing the suit.
      *
      * @return string
+     * @throws CardNotFoundException
      */
     public function getSuitAsString(): string
     {
+        if ($this->suitValue < 0 || $this->suitValue > 4) {
+            throw new CardNotFoundException("That suit does not exist.");
+        }
+
         $suits = [
             0 => 'Spader',
             1 => 'Hjärter',
@@ -118,6 +123,10 @@ class Card implements CardInterface
      */
     public function getRankAsString(): string
     {
+        if ($this->rankValue < 1 || $this->rankValue > 14) {
+            throw new CardNotFoundException("That rank does not exist.");
+        }
+
         $ranks = [
             1 => '1',
             2 => '2',

@@ -13,7 +13,7 @@ class CardBasicTest extends TestCase
      *
      * @return void
      */
-    public function testCreateCardNoArguments()
+    public function testCreateNoArguments()
     {
         $card = new Card();
         $this->assertInstanceOf("\App\Card\Card", $card);

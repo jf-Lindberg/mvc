@@ -4,7 +4,7 @@ namespace App\Card;
 
 use PHPUnit\Framework\TestCase;
 
-class PlayerBasicTest extends TestCase
+class GameBasicTest extends TestCase
 {
 
 }

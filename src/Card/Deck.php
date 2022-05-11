@@ -27,22 +27,24 @@ class Deck implements DeckInterface
      * and get the entire deck.
      *
      */
-    public function __construct()
+    public function __construct(int $size = 0, array $deck = [], bool $isShuffled = false)
     {
-        $this->size = 0;
-        $this->deck = [];
-        $this->isShuffled = false;
+        $this->size = $size;
+        $this->deck = $deck;
+        $this->isShuffled = $isShuffled;
         $this->createDeck();
     }
 
     /** Adds card objects to the array representing the deck.
      *
+     * @param int $suits
+     * @param int $ranks
      * @return void
      */
-    public function createDeck(): void
+    public function createDeck(int $suits = 4, int $ranks = 13): void
     {
-        for ($suit = 0; $suit <= 3; $suit++) {
-            for ($rank = 2; $rank <= 14; $rank++) {
+        for ($suit = 0; $suit < $suits; $suit++) {
+            for ($rank = 2; $rank < $ranks+2; $rank++) {
                 $this->deck[$this->size] = new Card($suit, $rank);
                 $this->size++;
             }
