@@ -45,7 +45,7 @@ class Game implements GameInterface
             if ($this->player->getHandValue() > 21) {
                 $this->player->setStays(false);
                 $this->isGameDone = true;
-                throw new Exception("Over 21");
+                throw new Over21Exception("Over 21");
             }
         }
     }
@@ -60,7 +60,7 @@ class Game implements GameInterface
         $this->bank->addCardsToHand($hand);
         if ($this->bank->getHandValue() > 21) {
             $this->isGameDone = true;
-            throw new Exception("Over 21");
+            throw new Over21Exception("Over 21");
         }
     }
 

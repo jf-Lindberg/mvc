@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Card\Bank;
 use App\Card\Deck;
 use App\Card\Game;
+use App\Card\Over21Exception;
 use App\Card\Player;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -85,7 +86,7 @@ class GameController extends AbstractController
         if ($hitRequest) {
             try {
                 $gameObject->hitPlayer();
-            } catch (Exception $e) {
+            } catch (Over21Exception $e) {
                 $this->addFlash('info', 'Du drog över 21. Du har förlorat.');
             }
         }
@@ -93,7 +94,7 @@ class GameController extends AbstractController
         if ($stayRequest) {
             try {
                 $gameObject->playBank();
-            } catch (Exception $e) {
+            } catch (Over21Exception $e) {
                 $this->addFlash('info', 'Banken drog över 21. Du har vunnit.');
             }
         }

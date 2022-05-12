@@ -129,7 +129,7 @@ class CardGameController extends AbstractController
 
         try {
             for ($id = 1; $id <= $amountOfPlayers; $id++) {
-                $player = new Player($id);
+                $player = new Player(false, $id);
                 $hand = $deck->draw($amountOfCards);
                 $player->addCardsToHand($hand);
                 $arrayOfPlayers[$id] = [

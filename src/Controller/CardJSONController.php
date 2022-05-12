@@ -60,7 +60,7 @@ class CardJSONController extends AbstractController
         $session->set("drawn", $drawn);
         $drawnJson = [];
         foreach ($drawn as $card) {
-            $drawnJson[] = $card->getJsonCard();
+            $drawnJson[] = $card->jsonify();
         }
         $data = [
             "drawn cards" => $drawnJson,
@@ -87,7 +87,7 @@ class CardJSONController extends AbstractController
 
         try {
             for ($id = 1; $id <= $amountOfPlayers; $id++) {
-                $player = new Player($id);
+                $player = new Player(false, $id);
                 $hand = $deck->draw($amountOfCards);
                 $player->addCardsToHand($hand);
                 $arrayOfPlayers[$id] = [

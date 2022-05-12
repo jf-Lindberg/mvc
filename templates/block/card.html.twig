@@ -1,5 +1,5 @@
 {% block card %}
-    <div class="card {% if (card.getSuit == 'Hjärter' or card.getSuit == 'Ruter') %}red{% endif %}">
-            {{ card.getUnicode | raw }}
+    <div class="card {% if (card.getSuitAsString == 'Hjärter' or card.getSuitAsString == 'Ruter') %}red{% endif %}">
+            {{ card.unicode | raw }}
     </div>
 {% endblock %}
