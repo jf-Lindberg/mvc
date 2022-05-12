@@ -29,9 +29,9 @@ class PlayerBasicTest extends TestCase
     /**
      * @return void
      */
-    public function testCreateWithArgument()
+    public function testCreateWithArguments()
     {
-        $player = new Player(1);
+        $player = new Player(false, 1);
         $this->assertInstanceOf("\App\Card\Player", $player);
 
         $res = $player->getIdent();
@@ -87,12 +87,13 @@ class PlayerBasicTest extends TestCase
      */
     public function testGetIdent()
     {
-        $player = new Player(5);
+        $player = new Player(false, 5);
         $this->assertInstanceOf("\App\Card\Player", $player);
 
         $res = $player->getIdent();
         $exp = 5;
         $this->assertEquals($exp, $res);
+
         $type = gettype($res);
         $exp = "integer";
         $this->assertEquals($exp, $type);
@@ -103,7 +104,7 @@ class PlayerBasicTest extends TestCase
      */
     public function testGetHandValue()
     {
-        $player = new Player(1, 17);
+        $player = new Player(false, 1, 17);
         $this->assertInstanceOf("\App\Card\Player", $player);
 
         $res = $player->getHandValue();
@@ -136,7 +137,7 @@ class PlayerBasicTest extends TestCase
      */
     public function testSetStays()
     {
-        $player = new Player(1);
+        $player = new Player(false);
         $this->assertInstanceOf("\App\Card\Player", $player);
 
         $res = $player->isSetToStay();

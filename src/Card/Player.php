@@ -37,12 +37,13 @@ class Player implements PlayerInterface
      * a number of cards. It is possible to add, remove and get the cards
      * from an object of the class.
      *
+     * @param bool $stays
      * @param int $playerId
      * @param int $score
      */
-    public function __construct(int $playerId = 0, int $score = 0)
+    public function __construct(bool $stays = false, int $playerId = 0, int $score = 0)
     {
-        $this->stays = false;
+        $this->stays = $stays;
         $this->ident = $playerId;
         $this->cardsOnHand = [];
         $this->score = $score;
