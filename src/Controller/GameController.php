@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Card\Bank;
+use App\Card\BankDidNotStayException;
 use App\Card\Deck;
 use App\Card\Game;
 use App\Card\Over21Exception;
@@ -110,7 +111,7 @@ class GameController extends AbstractController
                 ". Du drog " . $playerData["points"] . ". Du vann!" : "Banken drog " . $bankData["points"] .
                 ". Du drog " . $playerData["points"] . ". Du förlorade!";
             $this->addFlash('info', $winnerMessage);
-        } catch (Exception $e) {
+        } catch (BankDidNotStayException $e) {
             $this->addFlash('info', '');
         }
 

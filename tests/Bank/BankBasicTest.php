@@ -11,7 +11,7 @@ class BankBasicTest extends TestCase
      */
     public function testDecidesToHitPositive()
     {
-        $bank = new Bank(false, 0, 15);
+        $bank = new Bank(0, 15);
         $this->assertInstanceOf("\App\Card\Player", $bank);
         $this->assertInstanceOf("\App\Card\Bank", $bank);
 
@@ -24,7 +24,7 @@ class BankBasicTest extends TestCase
      */
     public function testDecidesToHitNegative()
     {
-        $bank = new Bank(false, 0, 18);
+        $bank = new Bank(0, 18);
         $this->assertInstanceOf("\App\Card\Player", $bank);
         $this->assertInstanceOf("\App\Card\Bank", $bank);
 

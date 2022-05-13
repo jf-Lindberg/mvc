@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class DeckWithJokersBasicTest extends TestCase
 {
-
     /**
      * @return void
      * @throws DeckAlreadyExistsException

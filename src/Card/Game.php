@@ -20,7 +20,10 @@ class Game implements GameInterface
     }
 
     /**
-     * @throws Exception
+     * @return void
+     * @throws DeckAlreadyExistsException
+     * @throws NotEnoughCardsException
+     * @throws Over21Exception
      */
     public function newRound(): void
     {
@@ -35,26 +38,32 @@ class Game implements GameInterface
 
     /**
      * @param int $cardsToDeal
-     * @throws Exception
+     * @return bool
+     * @throws NotEnoughCardsException
+     * @throws Over21Exception
      */
-    public function hitPlayer(int $cardsToDeal = 1): void
+    public function hitPlayer(int $cardsToDeal = 1): bool
     {
         if (!$this->player->isSetToStay()) {
             $hand = $this->deck->draw($cardsToDeal);
             $this->player->addCardsToHand($hand);
             if ($this->player->getHandValue() > 21) {
-                $this->player->setStays(false);
+                $this->player->setStays(true);
                 $this->isGameDone = true;
                 throw new Over21Exception("Over 21");
             }
+            return true;
         }
+        return false;
     }
 
     /**
      * @param int $cardsToDeal
-     * @throws Exception
+     * @return array<Card>
+     * @throws NotEnoughCardsException
+     * @throws Over21Exception
      */
-    public function hitBank(int $cardsToDeal = 1): void
+    public function hitBank(int $cardsToDeal = 1): array
     {
         $hand = $this->deck->draw($cardsToDeal);
         $this->bank->addCardsToHand($hand);
@@ -62,25 +71,32 @@ class Game implements GameInterface
             $this->isGameDone = true;
             throw new Over21Exception("Over 21");
         }
+        return $hand;
     }
 
     /**
-     * @throws Exception
+     * @return array<int, array<Card>>
+     * @throws NotEnoughCardsException
+     * @throws Over21Exception
      */
-    public function playBank(): void
+    public function playBank(): array
     {
         $this->player->setStays(true);
-        if (!$this->isRoundFinished()) {
+        $roundFinished = $this->isRoundFinished();
+        if (!$roundFinished) {
+            $cardsHit = [];
             while ($this->bank->decidesToHit()) {
-                $this->hitBank();
+                $cardsHit[] = $this->hitBank();
             }
             $this->bank->setStays(true);
             $this->isGameDone = true;
+            return $cardsHit;
         }
+        return [];
     }
 
     /**
-     * @throws Exception
+     * @throws BankDidNotStayException
      */
     public function playerWins(): bool
     {
@@ -90,7 +106,12 @@ class Game implements GameInterface
             $this->isGameDone = true;
             return $playerPoints > $bankPoints;
         }
-        throw new Exception("Bank didn't stay");
+        throw new BankDidNotStayException("Bank didn't stay");
+    }
+
+    public function setIsGameDone(bool $val): void
+    {
+        $this->isGameDone = $val;
     }
 
     public function isRoundFinished(): bool

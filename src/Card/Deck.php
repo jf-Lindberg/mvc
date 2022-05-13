@@ -135,6 +135,9 @@ class Deck implements DeckInterface
     }
 
     /**
+     * @param int $size
+     * @param array<Card> $deck
+     * @return void
      * @throws DeckAlreadyExistsException
      */
     public function reset(int $size = 0, array $deck = []): void

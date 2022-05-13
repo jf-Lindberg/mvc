@@ -23,30 +23,29 @@ class Player implements PlayerInterface
     private array $cardsOnHand;
 
     /**
-     * @var bool
-     */
-    private bool $stays;
-
-    /**
      * @var int
      */
     private int $score;
+
+    /**
+     * @var bool
+     */
+    private bool $stays;
 
     /** Constructor for the player class.
      * The class contains the player id and an array representing
      * a number of cards. It is possible to add, remove and get the cards
      * from an object of the class.
      *
-     * @param bool $stays
      * @param int $playerId
      * @param int $score
      */
-    public function __construct(bool $stays = false, int $playerId = 0, int $score = 0)
+    public function __construct(int $playerId = 0, int $score = 0)
     {
-        $this->stays = $stays;
+        $this->score = $score;
+        $this->stays = false;
         $this->ident = $playerId;
         $this->cardsOnHand = [];
-        $this->score = $score;
     }
 
     /** Adds cards to the array representing the player hand.

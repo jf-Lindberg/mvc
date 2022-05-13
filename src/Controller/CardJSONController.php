@@ -87,7 +87,7 @@ class CardJSONController extends AbstractController
 
         try {
             for ($id = 1; $id <= $amountOfPlayers; $id++) {
-                $player = new Player(false, $id);
+                $player = new Player($id);
                 $hand = $deck->draw($amountOfCards);
                 $player->addCardsToHand($hand);
                 $arrayOfPlayers[$id] = [

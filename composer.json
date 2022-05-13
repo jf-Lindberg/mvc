@@ -101,7 +101,11 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
+        "csfix": [
+            "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
+            "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix tests"
+        ],
+        "phpdoc": "tools/phpdoc/phpdoc",
         "phpcs": "tools/php-codesniffer/vendor/bin/phpcs --standard=PSR12 src",
         "phpcbf": "tools/php-codesniffer/vendor/bin/phpcbf --standard=PSR12 src",
         "phpmd": "tools/phpmd/vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode",
