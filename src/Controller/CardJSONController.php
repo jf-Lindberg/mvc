@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Card\Deck;
+use App\Card\NotEnoughCardsException;
 use App\Card\Player;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,7 +54,7 @@ class CardJSONController extends AbstractController
         try {
             $drawn = $deck->draw($numberOfCards);
             $session->set("deck", $deck);
-        } catch (Exception $e) {
+        } catch (NotEnoughCardsException $e) {
             $drawn = $session->get("drawn") ?? [];
         }
 
@@ -95,7 +96,7 @@ class CardJSONController extends AbstractController
                     "hand" => $player->getJsonHand()
                 ];
             }
-        } catch (Exception $e) {
+        } catch (NotEnoughCardsException $e) {
             echo $e;
         }
 
