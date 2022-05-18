@@ -44,7 +44,7 @@ class PresentationControllerTwig extends AbstractController
          * @return array with texts
          */
         $finder = new Finder();
-        $finder->files()->in("../texter")->name('*.md');
+        $finder->files()->in("../texter")->name('*.md')->sortByName();
 
         $texts = [];
         foreach ($finder as $file) {
