@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Library;
+use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Library>
+ * @extends ServiceEntityRepository<Book>
  *
- * @method Library|null find($id, $lockMode = null, $lockVersion = null)
- * @method Library|null findOneBy(array $criteria, array $orderBy = null)
- * @method Library[]    findAll()
- * @method Library[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Book|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Book|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Book[]    findAll()
+ * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LibraryRepository extends ServiceEntityRepository
+class BookRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Library::class);
+        parent::__construct($registry, Book::class);
     }
 
-    public function add(Library $entity, bool $flush = false): void
+    public function add(Book $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class LibraryRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Library $entity, bool $flush = false): void
+    public function remove(Book $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class LibraryRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Library[] Returns an array of Library objects
+//     * @return Book[] Returns an array of Book objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class LibraryRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Library
+//    public function findOneBySomeField($value): ?Book
 //    {
 //        return $this->createQueryBuilder('l')
 //            ->andWhere('l.exampleField = :val')

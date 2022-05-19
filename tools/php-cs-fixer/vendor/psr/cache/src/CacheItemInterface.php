@@ -18,15 +18,15 @@ namespace Psr\Cache;
  *
  * Calling Libraries MUST NOT instantiate Item objects themselves. They may only
  * be requested from a Pool object via the getItem() method.  Calling Libraries
- * SHOULD NOT assume that an Item created by one Implementing Library is
- * compatible with a Pool from another Implementing Library.
+ * SHOULD NOT assume that an Item created by one Implementing Book is
+ * compatible with a Pool from another Implementing Book.
  */
 interface CacheItemInterface
 {
     /**
      * Returns the key for the current cache item.
      *
-     * The key is loaded by the Implementing Library, but should be available to
+     * The key is loaded by the Implementing Book, but should be available to
      * the higher level callers when needed.
      *
      * @return string
@@ -64,7 +64,7 @@ interface CacheItemInterface
      *
      * The $value argument may be any item that can be serialized by PHP,
      * although the method of serialization is left up to the Implementing
-     * Library.
+     * Book.
      *
      * @param mixed $value
      *   The serializable value to be stored.
