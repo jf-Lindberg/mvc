@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h3>Böcker</h3>
+    {% for book in books %}
+        {{ include ("block/book.html.twig") }}
+    {% endfor %}
+{% endblock %}

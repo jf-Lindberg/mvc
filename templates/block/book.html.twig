@@ -1,0 +1,13 @@
+{% block book %}
+    <div class="book">
+        <h4>{{ book.title }}</h4>
+        {% if 'http' in book.image  %}
+            <img class="book-cover" src="{{ book.image }}" alt="{{ book.title }} omslag">
+        {% else %}
+            <img class="book-cover" src="{{ asset('images/' ~ book.image) }}" alt="{{ book.title }} omslag">
+        {% endif %}
+        <p>Författare: {{ book.author }}<br/>
+            ISBN: <i>{{ book.isbn }}</i></p>
+        <p></p>
+    </div>
+{% endblock %}

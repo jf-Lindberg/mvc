@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +14,11 @@ class CreateBookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('isbn')
-            ->add('author')
-            ->add('image')
+            ->add('title', TextType::class, array('label' => 'Titel'))
+            ->add('isbn', TextType::class, array('label' => 'ISBN-nummer'))
+            ->add('author', TextType::class, array('label' => 'Författare'))
+            ->add('image', TextType::class, array('label' => 'Bildlänk'))
+            ->add('save', SubmitType::class, array('label' => 'Spara i databas'));
         ;
     }
 

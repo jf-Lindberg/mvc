@@ -103,3 +103,7 @@ body {
     font-size: 2em;
     margin: 0;
 }
+
+.book-cover {
+    max-width: 33%;
+}
