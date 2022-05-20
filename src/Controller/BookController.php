@@ -32,6 +32,7 @@ class BookController extends AbstractController
     ): Response {
         $book = new Book();
 
+        // Please note that Symfony forms use POST by default
         $form = $this->createForm(CreateBookType::class, $book);
 
         $form->handleRequest($request);
@@ -44,9 +45,7 @@ class BookController extends AbstractController
             $entityManager->flush();
 
             // ADD VIEW TO SHOW THE ID OF THE BOOK
-            return $this->render('library/test.html.twig', [
-               'book' => $book
-            ]);
+            return $this->redirectToRoute('library_show_all');
         }
 
         $data = [
@@ -83,7 +82,7 @@ class BookController extends AbstractController
             "books" => $bookArr
         ];
 
-        return $this->render('library/show.html.twig', $data);
+        return $this->render('library/show-all.html.twig', $data);
     }
 
     /**
@@ -109,12 +108,69 @@ class BookController extends AbstractController
             "books" => [$obj]
         ];
 
-        return $this->render('library/show.html.twig', $data);
+        return $this->render('library/show-single.html.twig', $data);
+    }
+
+    /**
+     * @Route("/library/update/{id}", name="library_update")
+     */
+    public function updateBook(
+        Request $request,
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Book::class)->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
+
+        // Please note that Symfony forms use POST by default
+        $form = $this->createForm(CreateBookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $book = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('library_show_all');
+        }
+
+        $data = [
+            "title" => "Uppdatera bok",
+            "form" => $form
+        ];
+
+
+        return $this->renderForm('library/update.html.twig', $data);
+    }
+
+    /**
+     * @Route("/library/delete/{id}", name="library_delete_by_id")
+     */
+    public function deleteProductById(
+        ManagerRegistry $doctrine,
+        int $id
+    ): Response {
+        $entityManager = $doctrine->getManager();
+        $book = $entityManager->getRepository(Book::class)->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
+
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('library_show_all');
     }
 }
-
-// Albert Camus - Främlingen - 9100223840 - stranger.jpg
-// Franz Kafka - Processen - 9789177810193 - process.jpg
-// Fjodor Dostojevskij - Brott och straff -  9789186745332 - crimeandpunishment.jpg
-
-// ADD NAV BAR TO LIBRARY

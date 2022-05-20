@@ -1,0 +1,11 @@
+{% extends "library/show.html.twig" %}
+
+{% block isbn %}
+    <td>{{ book.isbn }}</td>
+{% endblock %}
+
+{% block goback %}
+    <form action="{{ path('library_show_all') }}">
+        <input type="submit" value="Gå tillbaka" />
+    </form>
+{% endblock %}

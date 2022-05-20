@@ -3,7 +3,36 @@
 
 {% block content %}
     <h3>Böcker</h3>
-    {% for book in books %}
-        {{ include ("block/book.html.twig") }}
-    {% endfor %}
+    <table>
+        <thead>
+        <tr>
+            <th>Databas-ID</th>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>ISBN</th>
+            <th>Bild</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                {% block isbn %}
+                {% endblock %}
+                {% if 'http' in book.image %}
+                    <td><img class="book-cover" src="{{ book.image }}" alt="{{ book.title }} omslag"></td>
+                {% else %}
+                    <td><img class="book-cover" src="{{ asset('images/' ~ book.image) }}" alt="{{ book.title }} omslag">
+                    </td>
+                {% endif %}
+                {% block updatedelete %}
+                {% endblock %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% block goback %}
+    {% endblock %}
 {% endblock %}
