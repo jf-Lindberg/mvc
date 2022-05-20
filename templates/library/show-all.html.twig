@@ -7,12 +7,19 @@
 {% block updatedelete %}
     <td>
         <form action="{{ path('library_update', {id: book.id}) }}">
-            <input type="submit" value="Uppdatera" />
+            <input type="submit" value="Uppdatera"/>
         </form>
     </td>
     <td>
-    <form action="{{ path('library_delete_by_id', {id: book.id}) }}">
-        <input type="submit" value="Ta bort" />
-    </form>
+        <form action="{{ path('library_delete_by_id', {id: book.id}) }}">
+            <input type="submit" value="Ta bort"/>
+        </form>
     </td>
 {% endblock %}
+
+{% block newbook %}
+    <form action="{{ path('create_book') }}">
+        <input type="submit" value="Lägg till ny bok"/>
+    </form>
+{% endblock %}
+
