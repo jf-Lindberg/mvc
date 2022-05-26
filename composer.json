@@ -116,7 +116,8 @@
             "@phpmd",
             "@phpstan"
         ],
-        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html build/coverage"
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html build/coverage",
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json"
     },
     "conflict": {
         "symfony/symfony": "*"
