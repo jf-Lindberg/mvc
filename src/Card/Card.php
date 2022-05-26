@@ -51,10 +51,10 @@ class Card implements CardInterface
     {
         $this->suitValue = $suitValue;
         $this->rankValue = $rankValue;
-        if ($this->suitValue === -1) {
+        if ($suitValue === -1) {
             $this->randomizeSuit();
         }
-        if ($this->rankValue === -1) {
+        if ($rankValue === -1) {
             $this->randomizeRank();
         }
     }

@@ -54,7 +54,7 @@ class GameController extends AbstractController
      * @throws Exception
      */
     public function game(
-        Request          $request,
+        Request $request,
         SessionInterface $session
     ): Response {
         $newGameRequest = $request->request->get('new');

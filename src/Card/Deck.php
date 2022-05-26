@@ -49,7 +49,7 @@ class Deck implements DeckInterface
             throw new DeckAlreadyExistsException("That deck already contains cards.");
         }
         for ($suit = 0; $suit < $suits; $suit++) {
-            for ($rank = 2; $rank < $ranks+2; $rank++) {
+            for ($rank = 2; $rank < $ranks + 2; $rank++) {
                 $this->deck[$this->size] = new Card($suit, $rank);
                 $this->size++;
             }
