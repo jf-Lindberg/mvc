@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /Users/filiplindberg/dbwebb-kurser/mvc/me/report/src/Card</title>
+  <title>Dashboard for /Users/filiplindberg/dbwebb-kurser/mvc/me/report/src/Entity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="../index.html">/Users/filiplindberg/dbwebb-kurser/mvc/me/report/src</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Card</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Entity</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -58,6 +58,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="Book.php.html#8">App\Entity\Book</a></td><td class="text-right">0%</td></tr>
 
        </tbody>
       </table>
@@ -111,6 +112,15 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="Book.php.html#28"><abbr title="App\Entity\Book::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#33"><abbr title="App\Entity\Book::getTitle">getTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#38"><abbr title="App\Entity\Book::setTitle">setTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#45"><abbr title="App\Entity\Book::getIsbn">getIsbn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#50"><abbr title="App\Entity\Book::setIsbn">setIsbn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#57"><abbr title="App\Entity\Book::getAuthor">getAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#62"><abbr title="App\Entity\Book::setAuthor">setAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#69"><abbr title="App\Entity\Book::getImage">getImage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Book.php.html#74"><abbr title="App\Entity\Book::setImage">setImage</abbr></a></td><td class="text-right">0%</td></tr>
 
        </tbody>
       </table>
@@ -155,7 +165,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,11], "Class Coverage"))
+      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -173,7 +183,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,41], "Method Coverage"))
+      .datum(getCoverageDistributionData([9,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -223,7 +233,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,2,"<a href=\"Bank.php.html#5\">App\\Card\\Bank<\/a>"],[100,0,"<a href=\"BankDidNotStayException.php.html#8\">App\\Card\\BankDidNotStayException<\/a>"],[100,16,"<a href=\"Card.php.html#9\">App\\Card\\Card<\/a>"],[100,0,"<a href=\"CardNotFoundException.php.html#8\">App\\Card\\CardNotFoundException<\/a>"],[100,16,"<a href=\"Deck.php.html#7\">App\\Card\\Deck<\/a>"],[100,2,"<a href=\"Deck2.php.html#5\">App\\Card\\Deck2<\/a>"],[100,0,"<a href=\"DeckAlreadyExistsException.php.html#8\">App\\Card\\DeckAlreadyExistsException<\/a>"],[100,16,"<a href=\"Game.php.html#7\">App\\Card\\Game<\/a>"],[100,0,"<a href=\"NotEnoughCardsException.php.html#8\">App\\Card\\NotEnoughCardsException<\/a>"],[100,0,"<a href=\"Over21Exception.php.html#8\">App\\Card\\Over21Exception<\/a>"],[100,11,"<a href=\"Player.php.html#11\">App\\Card\\Player<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[0,9,"<a href=\"Book.php.html#8\">App\\Entity\\Book<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -247,7 +257,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,2,"<a href=\"Bank.php.html#12\">App\\Card\\Bank::decidesToHit<\/a>"],[100,3,"<a href=\"Card.php.html#50\">App\\Card\\Card::__construct<\/a>"],[100,1,"<a href=\"Card.php.html#66\">App\\Card\\Card::randomizeSuit<\/a>"],[100,1,"<a href=\"Card.php.html#75\">App\\Card\\Card::randomizeRank<\/a>"],[100,1,"<a href=\"Card.php.html#84\">App\\Card\\Card::getSuitValue<\/a>"],[100,1,"<a href=\"Card.php.html#93\">App\\Card\\Card::getRankValue<\/a>"],[100,3,"<a href=\"Card.php.html#103\">App\\Card\\Card::getSuitAsString<\/a>"],[100,3,"<a href=\"Card.php.html#125\">App\\Card\\Card::getRankAsString<\/a>"],[100,1,"<a href=\"Card.php.html#156\">App\\Card\\Card::stringify<\/a>"],[100,1,"<a href=\"Card.php.html#166\">App\\Card\\Card::unicode<\/a>"],[100,1,"<a href=\"Card.php.html#233\">App\\Card\\Card::jsonify<\/a>"],[100,1,"<a href=\"Deck.php.html#31\">App\\Card\\Deck::__construct<\/a>"],[100,4,"<a href=\"Deck.php.html#46\">App\\Card\\Deck::addCardsToDeck<\/a>"],[100,1,"<a href=\"Deck.php.html#63\">App\\Card\\Deck::get<\/a>"],[100,2,"<a href=\"Deck.php.html#72\">App\\Card\\Deck::jsonify<\/a>"],[100,3,"<a href=\"Deck.php.html#89\">App\\Card\\Deck::draw<\/a>"],[100,1,"<a href=\"Deck.php.html#107\">App\\Card\\Deck::shuffle<\/a>"],[100,1,"<a href=\"Deck.php.html#117\">App\\Card\\Deck::isShuffled<\/a>"],[100,1,"<a href=\"Deck.php.html#126\">App\\Card\\Deck::getLength<\/a>"],[100,1,"<a href=\"Deck.php.html#131\">App\\Card\\Deck::removeAllCards<\/a>"],[100,1,"<a href=\"Deck.php.html#143\">App\\Card\\Deck::reset<\/a>"],[100,2,"<a href=\"Deck2.php.html#14\">App\\Card\\Deck2::addCardsToDeck<\/a>"],[100,1,"<a href=\"Game.php.html#14\">App\\Card\\Game::__construct<\/a>"],[100,1,"<a href=\"Game.php.html#28\">App\\Card\\Game::newRound<\/a>"],[100,3,"<a href=\"Game.php.html#45\">App\\Card\\Game::hitPlayer<\/a>"],[100,2,"<a href=\"Game.php.html#66\">App\\Card\\Game::hitBank<\/a>"],[100,3,"<a href=\"Game.php.html#82\">App\\Card\\Game::playBank<\/a>"],[100,2,"<a href=\"Game.php.html#101\">App\\Card\\Game::playerWins<\/a>"],[100,1,"<a href=\"Game.php.html#112\">App\\Card\\Game::setIsGameDone<\/a>"],[100,1,"<a href=\"Game.php.html#117\">App\\Card\\Game::isRoundFinished<\/a>"],[100,1,"<a href=\"Game.php.html#122\">App\\Card\\Game::getBank<\/a>"],[100,1,"<a href=\"Game.php.html#127\">App\\Card\\Game::getPlayer<\/a>"],[100,1,"<a href=\"Player.php.html#43\">App\\Card\\Player::__construct<\/a>"],[100,2,"<a href=\"Player.php.html#56\">App\\Card\\Player::addCardsToHand<\/a>"],[100,1,"<a href=\"Player.php.html#64\">App\\Card\\Player::resetCards<\/a>"],[100,1,"<a href=\"Player.php.html#74\">App\\Card\\Player::getIdent<\/a>"],[100,1,"<a href=\"Player.php.html#83\">App\\Card\\Player::getHand<\/a>"],[100,1,"<a href=\"Player.php.html#91\">App\\Card\\Player::getHandValue<\/a>"],[100,2,"<a href=\"Player.php.html#104\">App\\Card\\Player::getJsonHand<\/a>"],[100,1,"<a href=\"Player.php.html#117\">App\\Card\\Player::setStays<\/a>"],[100,1,"<a href=\"Player.php.html#125\">App\\Card\\Player::isSetToStay<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[0,1,"<a href=\"Book.php.html#28\">App\\Entity\\Book::getId<\/a>"],[0,1,"<a href=\"Book.php.html#33\">App\\Entity\\Book::getTitle<\/a>"],[0,1,"<a href=\"Book.php.html#38\">App\\Entity\\Book::setTitle<\/a>"],[0,1,"<a href=\"Book.php.html#45\">App\\Entity\\Book::getIsbn<\/a>"],[0,1,"<a href=\"Book.php.html#50\">App\\Entity\\Book::setIsbn<\/a>"],[0,1,"<a href=\"Book.php.html#57\">App\\Entity\\Book::getAuthor<\/a>"],[0,1,"<a href=\"Book.php.html#62\">App\\Entity\\Book::setAuthor<\/a>"],[0,1,"<a href=\"Book.php.html#69\">App\\Entity\\Book::getImage<\/a>"],[0,1,"<a href=\"Book.php.html#74\">App\\Entity\\Book::setImage<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
