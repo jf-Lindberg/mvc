@@ -1,9 +1,9 @@
-#### Introduktion - De fyra C'na (Coverage, Complexity, Cohesion, Coupling)
+### Introduktion
 Analyserna på denna sida kommer bygga på "de fyra C'na" vilket är en term för fyra mätvärden som är bland de 
 vanligaste att kolla på när man utför statisk kodanalys. Mätvärdena har gemensamt att orden som beskriver dem alla 
 börjar på C på engelska. Dessa är:
 
-##### Coverage
+#### Coverage
 Code coverage är relaterat till testning och går att översätta till "kodtäckning" på svenska. Det mäts i procent och 
 har att göra med hur stor andel av koden som testas. Med andra ord - om alla rader i kodbasen testas av enhetstester 
 kommer coverage vara på 100% och om det inte finns några tester alls kommer den vara på 0%.
@@ -17,7 +17,7 @@ garantier för något. Främst är det viktigt att tänka på att tester bara ka
 missat att tänka på vissa fall (exempelvis glömt att kolla för null-värden eller liknande) vid både utveckling och 
 testning kommer 100% coverage inte betyda något när det händer.
 
-##### Complexity
+#### Complexity
 Complexity eller cyclomatic complexity är ett mätvärde som precis som det låter har att göra med hur komplex delar 
 av koden är, exempelvis funktioner/metoder eller klasser. Det definieras av antalet "vägar" koden kan ta i en given 
 bit kod. En väg definieras i det här fallet som något som är beroende av något typ av villkor - alltså villkorssatser 
@@ -43,12 +43,23 @@ CRAP(m) = CC(m)^2 * U(m)^3 + CC(m)
 
 En hög CRAP-score indikerar alltså att ens kod är...ja, skit. Om en metod har hög CRAP indikerar det att den 
 antingen är för komplex, inte är tillräckligt testad eller en kombination av båda. Det är en bra indikator på 
-balansen mellan komplexitet och tester. Generellt bör en hög komplexitet vägas upp med hög coverage.
+balansen mellan komplexitet och tester. Generellt bör en hög komplexitet vägas upp med hög coverage. 
 
-##### Cohesion
-Kan skrivas som samhörighet på svenska, det vill säga till vilken grad klassens data och beteenden hör ihop.
+En nackdel med att använda komplexitet som mätvärde är att det visar en ganska begränsad bild av just komplexiteten 
+av en applikation. Mätvärdet kollar bara på hur många vägar som koden kan ta, inte vad dessa vägar består av. Rent 
+teoretiskt skulle alltså en metod som har ett switch-statement med fem case där varje case printar 'a', 'b', 'c', 
+'d', 'e' som mer komplext än ett if/else som kallar på massor av olika metoder. Det är därför viktigt att inte 
+stirra sig blind på bara komplexitet eller CRAP utan ta andra mätvärden i beaktning och göra en helhetsbedömning.
 
-##### Coupling
+#### Cohesion
+Detta är ett mätvärde som man kan översätta till ungefär "samhörighet" på svenska. Precis som det låter är det en 
+indikator på hur kod hänger ihop - mer specifikt hur nära sammankopplad koden i en klass är. Hög cohesion innebär 
+att klassen gör många saker (har flera ansvarsområden), medan låg cohesion betyder att klassens data och beteenden 
+(metoder) är tight sammankopplade. Hög cohesion indikerar alltså bland annat att koden bryter mot single-responsibility 
+principle. Kod med låg cohesion är mer robust och mer logisk för de som ska läsa den, vilket underlättar felsökning 
+och minskar risken för technical debt.
+
+#### Coupling
 Kan skrivas som koppling på svenska. Beskriver hur starka beroenden som finns kopplade till en klass.
 
 - Flytta ut formulär från GameController till en egen Route
