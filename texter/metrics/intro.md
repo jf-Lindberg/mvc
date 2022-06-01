@@ -60,6 +60,34 @@ principle. Kod med låg cohesion är mer robust och mer logisk för de som ska l
 och minskar risken för technical debt.
 
 #### Coupling
+Beroende eller *kopplingar* mellan klasser går att mäta och kallas för *coupling*. Det finns två olika typer av 
+coupling - *afferent coupling* eller och *efferent coupling*. Afferent coupling beskriver inkommande kopplingar, det 
+vill säga hur många andra klasser som är beroende av en given klass. Efferent coupling beskriver utgående kopplingar,
+alltså vilka klasser en given klass är beroende av.
+
+Att mäta efferent eller afferent coupling i sig är inte särskilt intressant eftersom det inte berättar någon 
+särskild historia om koden. Klasser kommer alltid vara beroende av andra klasser. Men kombinationen av de båda 
+mätvärdena kan berätta något om stabiliteten på koden. *Instability* mäts enligt följande uträkning:
+
+```
+Ce = efferent coupling (utgående kopplingar)
+Ca = afferent coupling (ingående kopplingar)
+
+Ce / (Ce + Ca)
+```
+
+Eftersom detta är en andelsberäkning kommer resultatet vara mellan 0 och 1, där 1 är en väldigt instabil klass och 0 
+är en stabil klass. Vad detta i praktiken innebär är att en klass i isolation är stabil om den har många *ingående* 
+kopplingar utan att ha några utgående kopplingar, eftersom 0 / 0 + x är 0. En klass blir mer och mer instabil ju 
+fler utgående kopplingar den har. Det finns en logik i det resonemanget, eftersom ingående kopplingar egentligen 
+inte påverkar funktionaliteten av just den klassen man analyserar. Utgående kopplingar är med andra ord boven och 
+man bör vara vaksam ifall en klass instabilitet blir för hög. Samtidigt är det ibland inte praktiskt att undvika att ha 
+många utgående kopplingar om man har exempelvis en controller-klass. Så länge man är medveten om och har ett skäl för 
+instabiliteten kan det alltså vara acceptabelt att ha hög instabilitet på någon enstaka klass i en applikation, men 
+om för många klasser är beroende av andra är det ett symptom på kod som skulle kunna förbättras. 
+
+EC vs AC (efferent/afferent)
+
 Kan skrivas som koppling på svenska. Beskriver hur starka beroenden som finns kopplade till en klass.
 
 - Flytta ut formulär från GameController till en egen Route
