@@ -59,6 +59,8 @@ att klassen gör många saker (har flera ansvarsområden), medan låg cohesion b
 principle. Kod med låg cohesion är mer robust och mer logisk för de som ska läsa den, vilket underlättar felsökning 
 och minskar risken för technical debt.
 
+Cohesion kan också skrivas som LCOM vilket står för **L**ack of **Co**hesion in **M**ethods.
+
 #### Coupling
 Beroende eller *kopplingar* mellan klasser går att mäta och kallas för *coupling*. Det finns två olika typer av 
 coupling - *afferent coupling* eller och *efferent coupling*. Afferent coupling beskriver inkommande kopplingar, det 
@@ -93,4 +95,4 @@ Kan skrivas som koppling på svenska. Beskriver hur starka beroenden som finns k
 - Flytta ut formulär från GameController till en egen Route
 - Testa mera
 - Gå mer på modellens STATE snarare än att hantera state i controllern
-- 
+- Flytta rena card-paths till en egen controller för att göra de mindre

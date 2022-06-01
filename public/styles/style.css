@@ -107,3 +107,7 @@ body {
 .book-cover {
     max-width: 33%;
 }
+
+img[alt=report] {
+    width: 600px;
+}

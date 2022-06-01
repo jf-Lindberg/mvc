@@ -7,7 +7,7 @@
         <h3>Metrics</h3>
         {% for text in texts %}
             {% apply markdown_to_html %}
-                {{ text | raw }}
+                {{ text }}
             {% endapply %}
         {% endfor %}
     </div>
