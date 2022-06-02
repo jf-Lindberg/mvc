@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Card\Deck;
 use App\Card\NotEnoughCardsException;
 use App\Card\Player;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CardJSONController extends AbstractController
 {
+
+//    public function createResponse(Array $data): JsonResponse
+//    {
+//        return new JsonResponse($data);
+//    }
+
     /**
      * @Route("card/api/deck", name="api-deck")
      */

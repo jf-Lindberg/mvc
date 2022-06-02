@@ -53,13 +53,14 @@ stirra sig blind på bara komplexitet eller CRAP utan ta andra mätvärden i bea
 
 #### Cohesion
 Detta är ett mätvärde som man kan översätta till ungefär "samhörighet" på svenska. Precis som det låter är det en 
-indikator på hur kod hänger ihop - mer specifikt hur nära sammankopplad koden i en klass är. Hög cohesion innebär 
-att klassen gör många saker (har flera ansvarsområden), medan låg cohesion betyder att klassens data och beteenden 
-(metoder) är tight sammankopplade. Hög cohesion indikerar alltså bland annat att koden bryter mot single-responsibility 
-principle. Kod med låg cohesion är mer robust och mer logisk för de som ska läsa den, vilket underlättar felsökning 
+indikator på hur kod hänger ihop - mer specifikt hur nära sammankopplad koden i en klass är. Låg cohesion innebär 
+att klassen gör många saker (har flera ansvarsområden), medan hög cohesion betyder att klassens data och beteenden 
+(metoder) är tight sammankopplade. Låg cohesion indikerar alltså bland annat att koden bryter mot single-responsibility 
+principle. Kod med hög cohesion är mer robust och mer logisk för de som ska läsa den, vilket underlättar felsökning 
 och minskar risken för technical debt.
 
-Cohesion kan också skrivas som LCOM vilket står för **L**ack of **Co**hesion in **M**ethods.
+Cohesion kan också skrivas som LCOM vilket står för **L**ack of **Co**hesion in **M**ethods. Låg LCOM (så nära 1 som 
+möjligt) innebär att klassen har få ansvarsområden medan allt över 1 innebär att klassen kan vara spretig.
 
 #### Coupling
 Beroende eller *kopplingar* mellan klasser går att mäta och kallas för *coupling*. Det finns två olika typer av 
