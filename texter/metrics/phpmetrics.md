@@ -50,13 +50,10 @@ Rapporten över coupling visar följande:
 
 ![report](images/phpm_coupling.png)
 
-Det viktiga 
-
-Det finns dock rapporter för både cohesion och coupling som går mer på djupet och kan hitta problem som inte syns i
-översikten. Vi börjar med att kolla på cohesion genom mätvärdet LCOM:
-
-COUPLING RIMLIGT PÅ CONTROLLERS
-
-![report](images/lcom.png)
-
-
+Det viktiga att kolla på här är utgående kopplingar (efferent coupling) och stabiliteten som mäts genom 
+*instability*. Klasserna som sticker ut med hög instabilitet och många utgående kopplingar är controller-klasserna. 
+Det är förväntat eftersom de är mellanhanden mellan modellerna och viewsen. Det går dock att se att GameController 
+även här sticker ut i antal utgående kopplingar. Anledningen till detta är att spelet till stor del är uppbyggt via 
+aggregationsförhållanden. Objekt för spelare, bank och kortlek skapas alltså i GameController och skickas in som 
+argument till ett objekt av Game-klassen. Med tanke på att GameController sticker ut i såväl komplexitet som 
+coupling finns det skäl för att kolla igenom klassen.
