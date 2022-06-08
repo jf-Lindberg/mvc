@@ -1,4 +1,4 @@
-### Rapportanalys PHPmetrics
+### PHPmetrics
 
 Rapporten från PHPmetrics visar mätvärden på bland annat cyklomatisk komplexitet, cohesion och coupling. Den visar inte
 code coverage. På översikten kan man se att det finns två "violations", att det är 1080 rader kod i applikationen och
@@ -22,7 +22,7 @@ cyklomatisk komplexitet trots att medelvärdet är relativt lågt. Rapporten öv
 Klasserna med högst komplexitet är föga förvånande Controller-klasserna som sköter routesen i applikationen. Generellt
 ligger alla klasser på rimliga nivåer med total komplexitet på 12 som mest. Metoderna verkar också vara relativt små
 även om det verkar finnas en metod med komplexitet på 10 i GameController vilket står för 10/11 vägval i hela klassen.
-Om man kollar på klassen verkar det vara play-metoden som är boven i dramat. Den sköter själva spelets logik och är
+Om man kollar på klassen verkar det vara game-metoden som är boven i dramat. Den sköter själva spelets logik och är
 ganska stor. Det kan vara en idé att kolla på om det går att bryta ut mindre metoder ur den eftersom den har ett väldigt
 stort ansvar i klassen. Rapporten visar även att Card-klassen som PHPmetrics varnade för inte verkar ha problem med just
 komplexitet.

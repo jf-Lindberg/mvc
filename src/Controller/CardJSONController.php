@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class CardJSONController extends AbstractController
 {
 
-//    public function createResponse(Array $data): JsonResponse
-//    {
-//        return new JsonResponse($data);
-//    }
+    public function createResponse(Array $data): JsonResponse
+    {
+        return new JsonResponse($data);
+    }
 
     /**
      * @Route("card/api/deck", name="api-deck")
@@ -31,7 +31,7 @@ class CardJSONController extends AbstractController
         ];
         $session->set("deck", $deck);
 
-        return new JsonResponse($data);
+        return $this->createResponse($data);
     }
 
     /**
@@ -44,7 +44,8 @@ class CardJSONController extends AbstractController
         $data = [
             "deck" => $deck->jsonify()
         ];
-        return new JsonResponse($data);
+
+        return $this->createResponse($data);
     }
 
     /**
@@ -73,7 +74,7 @@ class CardJSONController extends AbstractController
             "cards left" => $deck->getLength()
         ];
 
-        return new JsonResponse($data);
+        return $this->createResponse($data);
     }
 
     /**
@@ -112,6 +113,6 @@ class CardJSONController extends AbstractController
             "cards left" => $deck->getLength()
         ];
 
-        return new JsonResponse($data);
+        return $this->createResponse($data);
     }
 }

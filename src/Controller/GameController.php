@@ -57,24 +57,44 @@ class GameController extends AbstractController
         Request $request,
         SessionInterface $session
     ): Response {
+        $gameObject = $session->get("game");
+
+        $bankData["hand"] = $gameObject->getBank()->getHand();
+        $bankData["points"] = $gameObject->getBank()->getHandValue();
+
+        $playerData["hand"] = $gameObject->getPlayer()->getHand();
+        $playerData["points"] = $gameObject->getPlayer()->getHandValue();
+
+        try {
+            $winnerMessage = $gameObject->playerWins() ? "Banken drog " . $bankData["points"] .
+                ". Du drog " . $playerData["points"] . ". Du vann!" : "Banken drog " . $bankData["points"] .
+                ". Du drog " . $playerData["points"] . ". Du förlorade!";
+            $this->addFlash('info', $winnerMessage);
+        } catch (BankDidNotStayException $e) {
+            $this->addFlash('info', '');
+        }
+
+        $data = [
+            "title" => "Game",
+            "playerData" => $playerData,
+            "bankData" => $bankData
+        ];
+        return $this->render('game/game.html.twig', $data);
+    }
+
+    /**
+     * @Route("/game/form", name="game-form")
+     * @throws Exception
+     */
+    public function gameForm(
+        Request $request,
+        SessionInterface $session
+    ): Response {
         $newGameRequest = $request->request->get('new');
         $stayRequest = $request->request->get('stay');
         $hitRequest = $request->request->get('hit');
 
-        $deckObject = new Deck();
-        $bankObject = new Bank();
-        $playerObject = new Player(1);
-        $gameObject = $session->get("game") ?? new Game($deckObject, $bankObject, $playerObject);
-
-        $playerData = [
-            "hand" => [],
-            "points" => 0
-        ];
-
-        $bankData = [
-            "hand" => [],
-            "points" => 0
-        ];
+        $gameObject = $session->get("game") ?? new Game(new Deck(), new Bank(), new Player(1));
 
         if ($newGameRequest) {
             $gameObject->newRound();
@@ -100,28 +120,8 @@ class GameController extends AbstractController
             }
         }
 
-        $bankData["hand"] = $gameObject->getBank()->getHand();
-        $bankData["points"] = $gameObject->getBank()->getHandValue();
-
-        $playerData["hand"] = $gameObject->getPlayer()->getHand();
-        $playerData["points"] = $gameObject->getPlayer()->getHandValue();
-
-        try {
-            $winnerMessage = $gameObject->playerWins() ? "Banken drog " . $bankData["points"] .
-                ". Du drog " . $playerData["points"] . ". Du vann!" : "Banken drog " . $bankData["points"] .
-                ". Du drog " . $playerData["points"] . ". Du förlorade!";
-            $this->addFlash('info', $winnerMessage);
-        } catch (BankDidNotStayException $e) {
-            $this->addFlash('info', '');
-        }
-
         $session->set("game", $gameObject);
 
-        $data = [
-            "title" => "Game",
-            "playerData" => $playerData,
-            "bankData" => $bankData
-        ];
-        return $this->render('game/game.html.twig', $data);
+        return $this->redirectToRoute("game-play");
     }
 }

@@ -1,1 +1,0 @@
-### Rapportanalys Scrutinizer

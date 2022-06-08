@@ -11,7 +11,7 @@
             {{ include ("block/show-cards.html.twig") }}
         {% endif %}
         {{ include ("block/flash-message.html.twig") }}
-        <form method="post">
+        <form action="{{ path('game-form') }}" method="post">
             <input type="submit" name="hit" value="Ett till kort">
             <input type="submit" name="stay" value="Stanna">
             <input type="submit" name="new" value="Nytt spel">
