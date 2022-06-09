@@ -12,6 +12,3 @@ De förbättringar jag valt att göra baserat på analysen av PHPmetrics och Scr
      annan typ av respons i framtiden kommer det vara enklare att göra genom att ha en metod som skapar responser 
      istället för att det görs i vardera metod.
 4. Lyfta ut fler saker till egna klasser/metoder
-
-
-

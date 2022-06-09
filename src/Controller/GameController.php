@@ -54,10 +54,12 @@ class GameController extends AbstractController
      * @throws Exception
      */
     public function game(
-        Request $request,
         SessionInterface $session
     ): Response {
         $gameObject = $session->get("game");
+
+        $bankData = array();
+        $playerData = array();
 
         $bankData["hand"] = $gameObject->getBank()->getHand();
         $bankData["points"] = $gameObject->getBank()->getHandValue();
