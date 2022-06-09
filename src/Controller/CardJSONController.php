@@ -56,12 +56,14 @@ class CardJSONController extends AbstractController
         int $numberOfCards = 1
     ): Response {
         $deck = $session->get("deck") ?? new Deck();
+        $status = 'success';
 
         try {
             $drawn = $deck->draw($numberOfCards);
             $session->set("deck", $deck);
         } catch (NotEnoughCardsException $e) {
             $drawn = $session->get("drawn") ?? [];
+            $status = 'failed';
         }
 
         $session->set("drawn", $drawn);
@@ -71,7 +73,8 @@ class CardJSONController extends AbstractController
         }
         $data = [
             "drawn cards" => $drawnJson,
-            "cards left" => $deck->getLength()
+            "cards left" => $deck->getLength(),
+            "fetch" => $status
         ];
 
         return $this->createResponse($data);
@@ -87,6 +90,7 @@ class CardJSONController extends AbstractController
     ): Response {
         $deck = $session->get("deck") ?? new Deck();
         $arrayOfPlayers = [];
+        $status = 'success';
 
         if (!$deck->isShuffled()) {
             $deck->shuffle();
@@ -103,14 +107,15 @@ class CardJSONController extends AbstractController
                 ];
             }
         } catch (NotEnoughCardsException $e) {
-            echo $e;
+            $status = 'failed';
         }
 
         $session->set("deck", $deck);
 
         $data = [
             "players" => $arrayOfPlayers,
-            "cards left" => $deck->getLength()
+            "cards left" => $deck->getLength(),
+            "fetch" => $status
         ];
 
         return $this->createResponse($data);

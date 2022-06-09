@@ -56,7 +56,7 @@ class GameController extends AbstractController
     public function game(
         SessionInterface $session
     ): Response {
-        $gameObject = $session->get("game");
+        $gameObject = $session->get("game") ?? new Game(new Deck(), new Bank(), new Player(1));
 
         $bankData = array();
         $playerData = array();

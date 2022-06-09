@@ -1,17 +1,17 @@
 {% extends "library/show.html.twig" %}
 
 {% block isbn %}
-    <td><a href="{{ path('library_by_id', {id: book.id}) }}">{{ book.isbn }}</a></td>
+    <td><a href="{{ path('library_by_id', {ident: book.id}) }}">{{ book.isbn }}</a></td>
 {% endblock %}
 
 {% block updatedelete %}
     <td>
-        <form action="{{ path('library_update', {id: book.id}) }}">
+        <form action="{{ path('library_update', {ident: book.id}) }}">
             <input type="submit" value="Uppdatera"/>
         </form>
     </td>
     <td>
-        <form action="{{ path('library_delete_by_id', {id: book.id}) }}">
+        <form action="{{ path('library_delete_by_id', {ident: book.id}) }}">
             <input type="submit" value="Ta bort"/>
         </form>
     </td>
