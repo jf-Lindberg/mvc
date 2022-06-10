@@ -15,7 +15,7 @@ class MetricsController extends AbstractController
     public function home(): Response
     {
         $finder = new Finder();
-        $finder->files()->in("../texter/metrics")->name('*.md');
+        $finder->files()->in("../texter/metrics")->name('*.md')->sortByName(true);
         $texts = [];
         foreach ($finder as $file) {
             $contents = $file->getContents();
